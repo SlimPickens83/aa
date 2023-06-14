@@ -5,7 +5,7 @@ import "./App.css"
 // Components
 
 function App() {
-  return <BroswerRouter></BroswerRouter>
+  return <BrowserRouter></BrowserRouter>
 }
 
 export default App

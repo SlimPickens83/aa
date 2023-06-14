@@ -1,9 +1,11 @@
-import express, { urlencoded, json } from "express"
+const express = require("express")
 const app = express()
 
-app.use(urlencoded({ extended: false }))
-app.use(json())
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 const server = require("http").createServer(app)
 
-export default server
+console.log("App is running.")
+
+module.exports = server
