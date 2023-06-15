@@ -3,10 +3,13 @@ import { Link } from "react-router-dom"
 
 function Header() {
   return (
-    <header>
+    <header className="bg-primary container-md">
       <div>
         <h4>
-          <Link to="/"> AccountAbility Pittsburgh </Link>
+          <Link to="/" className="text-white">
+            {" "}
+            AccountAbility Pittsburgh{" "}
+          </Link>
         </h4>
       </div>
     </header>
