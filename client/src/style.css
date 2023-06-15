@@ -12,3 +12,7 @@ footer {
   gap: 12px;
   align-items: center;
 }
+
+.logo {
+  width: 80%;
+}
