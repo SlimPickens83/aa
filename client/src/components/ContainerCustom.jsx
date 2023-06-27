@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
-function Container(props) {
+function ContainerCustom(props) {
   return <div>{props.children}</div>
 }
 
-export default Container
+export default ContainerCustom

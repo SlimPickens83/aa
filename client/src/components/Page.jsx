@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import Container from "./Container"
+import ContainerCustom from "./ContainerCustom"
 
 function Page(props) {
   useEffect(() => {
@@ -7,7 +7,7 @@ function Page(props) {
     window.scrollTo(0, 0)
   }, [props.title])
 
-  return <Container>{props.children}</Container>
+  return <ContainerCustom>{props.children}</ContainerCustom>
 }
 
 export default Page

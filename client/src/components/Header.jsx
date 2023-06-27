@@ -1,44 +1,34 @@
 import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
+import Container from "react-bootstrap/Container"
+import Nav from "react-bootstrap/Nav"
+import Navbar from "react-bootstrap/Navbar"
+import NavDropdown from "react-bootstrap/NavDropdown"
 
 function Header() {
   return (
-    <nav className="navbar navbar-expand-xl navbar-light bg-primary">
-      <div className="container-fluid">
+    <Navbar expand="lg" bg="primary" data-bs-theme="dark">
+      <Container>
         <Link to="/" className="navbar-brand text-white">
           {" "}
           AccountAbility Pittsburgh{" "}
         </Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBasic" aria-controls="navbarBasic" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarBasic">
-          <ul className="navbar-nav me-auto mb-2 mb-xl-0">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">
-                Disabled
-              </a>
-            </li>
-          </ul>
-          <form className="d-flex">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
-      </div>
-    </nav>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="#link">About</Nav.Link>
+            <NavDropdown className="btn-primary" title="Client Portal" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Sign In</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Register</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">FAQ</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">CommissionsPro</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 

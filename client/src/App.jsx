@@ -11,10 +11,10 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<HomeGuest />} />
       </Routes>
-      <Footer /> */}
+      <Footer />
     </BrowserRouter>
   )
 }
