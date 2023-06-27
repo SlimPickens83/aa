@@ -5,7 +5,10 @@ import logo from "../assets/aa-p.png"
 function HomeGuest() {
   return (
     <Page title="Welcome">
-      <img className="" src={logo} alt="" />
+      <div id="splash">
+        <img className="logo" src={logo} alt="" />
+        <div className="main"></div>
+      </div>
     </Page>
   )
 }
