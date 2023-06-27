@@ -9,6 +9,18 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 14px 0px 14px 0px;
+}
+
+#about {
+  margin: 14px 28px 14px 28px;
+}
+
+#contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 56px 0 28px 0;
 }
 
 .logo {
