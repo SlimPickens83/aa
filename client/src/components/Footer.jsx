@@ -5,11 +5,18 @@ function Footer() {
   return (
     <footer>
       <div style={{ fontSize: 14 }}>
-        <Link to="/about">About</Link> | <Link to="/contact">Contact</Link>
+        <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/contact">Contact</Link>
       </div>
       <div style={{ fontSize: 10 }}>
         Images via <a href="https://www.freepik.com/">Freepik</a> & <a href="https://www.unsplash.com">Unsplash</a>
       </div>
+      <p className="m-0" style={{ fontSize: 10 }}>
+        Copyright &copy; {new Date().getFullYear()}{" "}
+        <a href="/" className="text-muted">
+          AccountAbility Pittsburgh
+        </a>
+        . All rights reserved.
+      </p>
     </footer>
   )
 }
