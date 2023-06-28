@@ -56,7 +56,8 @@ h1 {
   flex-direction: column;
 }
 
-#registerContainer {
+#registerContainer,
+#loginContainer {
   display: flex;
   flex-direction: column;
   align-items: center;

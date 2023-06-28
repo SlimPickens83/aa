@@ -22,7 +22,7 @@ function Header() {
               <NavDropdown.Item href="/login">Sign In</NavDropdown.Item>
               <NavDropdown.Item href="/register">Register</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">CommissionsPro</NavDropdown.Item>
+              <NavDropdown.Item href="/commissions">CommissionsPro</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
