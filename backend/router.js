@@ -7,6 +7,8 @@ router.use(cors())
 
 console.log("Router is running.")
 
+router.get("/", (req, res) => res.json("Hello, if you see this message that means your backend is up and running successfully."))
+
 // User routes
 router.post("/register", userController.register)
 router.post("/login", userController.login)

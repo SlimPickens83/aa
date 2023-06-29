@@ -48,7 +48,6 @@ User.prototype.login = function () {
 User.prototype.register = function () {
   return new Promise(async (resolve, reject) => {
     if (!this.errors.length) {
-      alert("User.prototype.register is working.")
       await usersCollection.insertOne(this.data)
       resolve()
     } else {

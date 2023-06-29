@@ -1,8 +1,10 @@
+// console.log(import.meta.env.BACKENDURL)
 import React, { useState, useReducer, useEffect } from "react"
 import ReactDOM from "react-dom/client"
 import { useImmerReducer } from "use-immer"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Axios from "axios"
+Axios.defaults.baseURL = "http://localhost:3000"
 
 import StateContext from "./StateContext.jsx"
 import DispatchContext from "./DispatchContext.jsx"

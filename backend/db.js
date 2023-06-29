@@ -8,8 +8,9 @@ async function start() {
   await client.connect()
   module.exports = client
   const app = require("./app")
-  app.listen(process.env.PORT)
+  app.listen(3000)
 }
 
 start()
 console.log("Db is running.")
+console.log(process.env.CONNECTIONSTRING)
