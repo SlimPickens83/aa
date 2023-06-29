@@ -27,8 +27,17 @@ function Registration() {
 
   function regReducer(draft, action) {
     switch (action.type) {
+      case "username":
+        draft.username.value = action.value
+        return
+      case "email":
+        draft.email.value = action.value
+        return
+      case "password":
+        draft.password.value = action.value
+        return
       case "submitForm":
-        if (draft.username && draft.email && draft.password) {
+        if (draft.username.value && draft.email.value && draft.password.value) {
           draft.submitCount++
         }
         return
