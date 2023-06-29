@@ -1,6 +1,6 @@
 import React, { useState, useReducer, useEffect } from "react"
 import ReactDOM from "react-dom/client"
-import { userImmerReducer } from "use-immer"
+import { useImmerReducer } from "use-immer"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Axios from "axios"
 
@@ -14,6 +14,7 @@ import Freq from "./components/Freq.jsx"
 import Login from "./components/Login.jsx"
 import Register from "./components/Register.jsx"
 import Profile from "./components/Profile.jsx"
+import Commissions from "./components/Commissions.jsx"
 
 function App() {
   const initialState = {
@@ -51,6 +52,8 @@ function App() {
         <Route path="/faq" element={<Freq />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/commissions" element={<Commissions />} />
       </Routes>
       <Footer />
     </BrowserRouter>

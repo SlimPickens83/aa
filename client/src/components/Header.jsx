@@ -7,7 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown"
 
 function Header() {
   return (
-    <Navbar expand="lg" bg="primary" data-bs-theme="dark">
+    <Navbar expand="lg" data-bs-theme="dark" style={{ backgroundColor: "#025ADE" }}>
       <Container>
         <Link to="/" className="navbar-brand text-white">
           {" "}

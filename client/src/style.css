@@ -57,7 +57,9 @@ h1 {
 }
 
 #registerContainer,
-#loginContainer {
+#loginContainer,
+#commissionsContainer,
+#profileContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
