@@ -1,4 +1,4 @@
-const usersCollection = require("../db".db().collection("users"))
+const usersCollection = require("../db").db().collection("users")
 
 let User = function (data) {
   this.loggedIn = false

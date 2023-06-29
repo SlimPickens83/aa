@@ -20,7 +20,7 @@ function Header() {
             <Nav.Link href="/about">About</Nav.Link>
             <NavDropdown className="btn-primary" title="Client Portal" id="basic-nav-dropdown">
               <NavDropdown.Item href="/login">Sign In</NavDropdown.Item>
-              <NavDropdown.Item href="/register">Register</NavDropdown.Item>
+              <NavDropdown.Item href="/registration">Register</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/commissions">CommissionsPro</NavDropdown.Item>
             </NavDropdown>

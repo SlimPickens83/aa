@@ -5,7 +5,7 @@ import DispatchContext from "../DispatchContext"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 
-function Register() {
+function Registration() {
   const appDispatch = useContext(DispatchContext)
 
   const initialState = {
@@ -87,4 +87,4 @@ function Register() {
   )
 }
 
-export default Register
+export default Registration

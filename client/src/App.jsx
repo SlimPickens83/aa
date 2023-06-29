@@ -4,6 +4,9 @@ import { useImmerReducer } from "use-immer"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Axios from "axios"
 
+import StateContext from "./StateContext.jsx"
+import DispatchContext from "./DispatchContext.jsx"
+
 // Components
 import Header from "./components/Header.jsx"
 import Footer from "./components/Footer.jsx"
@@ -12,7 +15,7 @@ import About from "./components/About.jsx"
 import Contact from "./components/Contact.jsx"
 import Freq from "./components/Freq.jsx"
 import Login from "./components/Login.jsx"
-import Register from "./components/Register.jsx"
+import Registration from "./components/Registration.jsx"
 import Profile from "./components/Profile.jsx"
 import Commissions from "./components/Commissions.jsx"
 
@@ -43,20 +46,24 @@ function App() {
   }, [state.loggedIn])
 
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomeGuest />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/faq" element={<Freq />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/commissions" element={<Commissions />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <StateContext.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomeGuest />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<Freq />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/commissions" element={<Commissions />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </DispatchContext.Provider>
+    </StateContext.Provider>
   )
 }
 
