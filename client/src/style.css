@@ -11,11 +11,78 @@ h1 {
   margin-bottom: 28px;
 }
 
+#header {
+  display: flex;
+}
+
+#headerContainer {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  align-items: normal;
+}
+
+#headerChild {
+  display: flex;
+  justify-content: space-between;
+}
+
+#headerButton {
+  padding: 8px;
+  align-self: center;
+}
+
+#headerGrandchild,
+#basic-nav-dropdown {
+  text-align: right;
+}
+
+#logo {
+  width: 288px;
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+}
+
 #splash {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 14px 0px 14px 0px;
+  width: 80%;
+}
+
+#splashOne,
+#splashTwo,
+#splashThree,
+#splashFour {
+  display: flex;
+  padding: 12px;
+  gap: 36px;
+  width: 100%;
+}
+
+#topImage {
+  height: 288px;
+  width: 432px;
+}
+
+#secondImage {
+  height: 288px;
+  width: 288px;
+}
+
+#bottomChild {
+  background-color: #0d4196;
+  color: white;
+  border-radius: 24px;
+  height: 288px;
+  width: 576px;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 #aboutContainer {
@@ -76,6 +143,7 @@ h1 {
 
 .city {
   width: 80%;
+  border: solid #0d4196;
 }
 
 .dropdown-menu {

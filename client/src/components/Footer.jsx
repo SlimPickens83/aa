@@ -1,9 +1,11 @@
 import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
+import pitt from "../assets/pittSkyline.png"
 
 function Footer() {
   return (
     <footer>
+      <img className="city" src={pitt} alt="" />
       <div style={{ fontSize: 14 }}>
         <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/contact">Contact</Link>
       </div>
