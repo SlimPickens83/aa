@@ -3,7 +3,7 @@ import React, { useEffect } from "react"
 function Freq() {
   return (
     <div id="faq">
-      <h1 className="text-primary">Frequently Asked Questions</h1>
+      <h1 id="freq">Frequently Asked Questions</h1>
       <h4 className="text-secondary">How long have you been doing this?</h4>
       <p className="text-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam vel quam elementum pulvinar. Gravida arcu ac tortor dignissim convallis aenean et tortor. Tempus imperdiet nulla malesuada pellentesque. Viverra vitae congue eu consequat ac felis donec et. Eget aliquet nibh praesent tristique. Amet venenatis urna cursus eget nunc scelerisque. Pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum. Imperdiet proin fermentum leo vel orci porta non pulvinar. Amet consectetur adipiscing elit duis tristique. Nibh sit amet commodo nulla facilisi nullam. Mi ipsum faucibus vitae aliquet nec ullamcorper.</p>
       <h4 className="text-secondary">What services do you offer?</h4>

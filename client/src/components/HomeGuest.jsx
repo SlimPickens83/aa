@@ -42,7 +42,7 @@ function HomeGuest() {
           </div>
           <div id="splashFour">
             <div id="bottomChild">
-              <h4>Would you like to know more?</h4>
+              <h3>Would you like to know more?</h3>
             </div>
           </div>
         </div>

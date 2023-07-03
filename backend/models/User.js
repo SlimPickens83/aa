@@ -35,7 +35,7 @@ User.prototype.login = function () {
             this.loggedIn = true
             resolve("User match successful.")
           } else {
-            reject("Invalid username / password.")
+            reject(`Invalid username (${this.data.username}) / password (${this.data.password}).`)
           }
         })
         .catch(function (e) {

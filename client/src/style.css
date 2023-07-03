@@ -55,12 +55,17 @@ h1 {
 
 #splashOne,
 #splashTwo,
-#splashThree,
-#splashFour {
+#splashThree {
   display: flex;
   padding: 12px;
   gap: 36px;
   width: 100%;
+}
+
+#splashFour {
+  display: flex;
+  width: 100%;
+  margin: 12px 0px 12px 0px;
 }
 
 #topImage {
@@ -76,8 +81,8 @@ h1 {
 #bottomChild {
   background-color: #0d4196;
   color: white;
-  border-radius: 24px;
-  height: 288px;
+  border-radius: 18px;
+  height: 240px;
   width: 576px;
   display: flex;
   flex-grow: 1;
@@ -117,6 +122,10 @@ h1 {
   margin: 56px 28px 14px 70px;
 }
 
+#freq {
+  color: #0d4196;
+}
+
 #login,
 #register {
   display: flex;
@@ -144,10 +153,12 @@ h1 {
 .city {
   width: 80%;
   border: solid #0d4196;
+  border-radius: 12px;
+  margin: 6px;
 }
 
 .dropdown-menu {
-  background-color: #5bc0de;
+  background-color: #0d4296e5;
   --bs-dropdown-link-hover-bg: #0d6efd;
   --bs-dropdown-link-hover-color: #f8f9fa;
 }

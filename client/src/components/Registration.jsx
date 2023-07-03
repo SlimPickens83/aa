@@ -52,6 +52,7 @@ function Registration() {
       async function fetchResults() {
         try {
           const response = await Axios.post("/register", { username: state.username.value, email: state.email.value, password: state.password.value })
+          appDispatch({ type: "register" })
         } catch (e) {
           console.log("There was a problem or the request was canceled.")
         }

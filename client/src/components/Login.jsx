@@ -16,7 +16,7 @@ function Login(props) {
       if (response.data) {
         appDispatch({ type: "login", data: response.data })
       } else {
-        console.log("Incorrect username / password.")
+        console.log(`Incorrect username (${username}) / password (${password})`)
       }
     } catch (e) {
       console.log("Undetermined login error.")

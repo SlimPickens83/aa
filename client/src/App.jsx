@@ -33,6 +33,13 @@ function App() {
     switch (action.type) {
       case "login":
         alert("You are logged in.")
+        draft.loggedIn = true
+        draft.user = action.data
+        return
+      case "register":
+        alert("Congratulations on registering for your new account.")
+        draft.loggedIn = true
+        draft.user = action.data
         return
     }
   }
