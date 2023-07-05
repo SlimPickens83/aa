@@ -27,21 +27,20 @@ User.prototype.cleanUp = function () {
 
 User.prototype.login = function () {
   return new Promise((resolve, reject) => {
-    usersCollection.findOne(
-      { username: this.data.username }
-        .then(attemptedUser => {
-          if (this.data.password === attemptedUser.password) {
-            this.data = attemptedUser
-            this.loggedIn = true
-            resolve("User match successful.")
-          } else {
-            reject(`Invalid username (${this.data.username}) / password (${this.data.password}).`)
-          }
-        })
-        .catch(function (e) {
-          reject("Please try again later.")
-        })
-    )
+    usersCollection
+      .findOne({ username: this.data.username })
+      .then(attemptedUser => {
+        if (this.data.password === attemptedUser.password) {
+          this.data = attemptedUser
+          this.loggedIn = true
+          resolve("User match successful.")
+        } else {
+          reject(`Invalid username (${this.data.username}) / password (${this.data.password}).`)
+        }
+      })
+      .catch(function (e) {
+        reject("Please try again later.")
+      })
   })
 }
 
