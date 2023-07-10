@@ -60,7 +60,7 @@ function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/" element={<HomeGuest />} />
+            <Route path="/" element={state.loggedIn ? <Profile /> : <HomeGuest />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<Freq />} />

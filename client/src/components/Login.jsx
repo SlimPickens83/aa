@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import Axios from "axios"
 import DispatchContext from "../DispatchContext"
 import Button from "react-bootstrap/Button"
@@ -8,13 +9,16 @@ function Login(props) {
   const appDispatch = useContext(DispatchContext)
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
+  const navigate = useNavigate()
 
   async function handleSubmit(e) {
     e.preventDefault()
+
     try {
       const response = await Axios.post("/login", { username, password })
       if (response.data) {
         appDispatch({ type: "login", data: response.data })
+        navigate("/")
       } else {
         console.log(`Incorrect username (${username}) / password (${password})`)
       }
