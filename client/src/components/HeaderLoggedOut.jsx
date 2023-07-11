@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar"
 import NavDropdown from "react-bootstrap/NavDropdown"
 import logo from "../assets/aa-p_mk2.png"
 
-function Header() {
+function HeaderLoggedOut() {
   return (
     <Navbar id="header" expand="lg" data-bs-theme="light">
       <Container id="headerContainer">
@@ -37,4 +37,4 @@ function Header() {
   )
 }
 
-export default Header
+export default HeaderLoggedOut

@@ -167,6 +167,7 @@ h1 {
 
 #profileDisplay {
   margin: 12px;
+  width: 100%;
 }
 
 #currentJobs,
@@ -186,6 +187,36 @@ h1 {
   height: 58px;
   font-size: 34px;
   margin-left: 3%;
+}
+
+#jobsMain {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#company {
+  background-color: #0d4196;
+  color: white;
+  flex: 1;
+  padding: 6px;
+}
+
+#jobsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+
+#job {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  margin: 6px 0px 6px 0px;
+  padding: 6px 0px 6px 0px;
+  background-color: #596d8c;
+  color: white;
+  border-radius: 6px;
 }
 
 .logo {

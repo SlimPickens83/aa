@@ -10,7 +10,8 @@ import StateContext from "./StateContext.jsx"
 import DispatchContext from "./DispatchContext.jsx"
 
 // Components
-import Header from "./components/Header.jsx"
+import HeaderLoggedOut from "./components/HeaderLoggedOut.jsx"
+import HeaderLoggedIn from "./components/HeaderLoggedIn.jsx"
 import Footer from "./components/Footer.jsx"
 import HomeGuest from "./components/HomeGuest.jsx"
 import About from "./components/About.jsx"
@@ -57,7 +58,7 @@ function App() {
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
         <BrowserRouter>
-          <Header />
+          {state.loggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
           <Routes>
             <Route path="/" element={state.loggedIn ? <Profile /> : <HomeGuest />} />
             <Route path="/about" element={<About />} />
