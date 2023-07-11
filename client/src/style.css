@@ -133,9 +133,7 @@ h1 {
 }
 
 #registerContainer,
-#loginContainer,
-#commissionsContainer,
-#profileContainer {
+#loginContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,20 +147,45 @@ h1 {
 #profileContainer {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 0% 10% 0% 10%;
+  height: 720px;
+  margin: 0% 10% 0% 10%;
+}
+
+#profileMain {
+  display: flex;
   gap: 12px;
+  height: 100%;
+}
+
+#profileSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 6px 12px 6px;
+  background-color: darkgray;
+}
+
+#profileDisplay {
+  margin: 12px;
 }
 
 #currentJobs,
 #feeStructure,
 #dynamicInvoice {
+  background-color: #0d4196;
+  color: white;
+}
+
+#profileWelcomeContainer {
   display: flex;
-  flex-direction: column;
-  margin: 0% 0% 5% 10%;
-  border: solid 1px black;
-  border-radius: 12px;
-  padding: 12px 18px 12px 18px;
+  background-color: #0d4196;
+}
+
+#welcome {
+  color: white;
+  height: 58px;
+  font-size: 34px;
+  margin-left: 3%;
 }
 
 .logo {

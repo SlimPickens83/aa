@@ -3,6 +3,7 @@ import Page from "./Page"
 import { useParams, NavLink, Routes, Route } from "react-router-dom"
 import StateContext from "../StateContext"
 import { useImmer } from "use-immer"
+import Button from "react-bootstrap/Button"
 
 function Profile() {
   const appState = useContext(StateContext)
@@ -17,25 +18,18 @@ function Profile() {
 
   return (
     <div id="profileContainer">
-      <h1>Welcome, {`${appState.user.username}`}!</h1>
-      <div id="currentJobs">
-        <h2>Current *jobs*</h2>
-        <ul>
-          <li>Payroll</li>
-          <li>Tax planning</li>
-          <li>Consulting</li>
-        </ul>
+      <div id="profileWelcomeContainer">
+        <div id="welcome">Welcome, {`${appState.user.username}`}!</div>
       </div>
-      <div id="feeStructure">
-        <h2>Fee structure</h2>
-        <ul>
-          <li>Payroll: $XX / hr</li>
-          <li>Tax planning: $XX / hr</li>
-          <li>Consulting: $XX / hr</li>
-        </ul>
-      </div>
-      <div id="dynamicInvoice">
-        <h2>Invoice</h2>
+      <div id="profileMain">
+        <div id="profileSidebar">
+          <Button id="currentJobs">Current Jobs</Button>
+          <Button id="feeStructure">Fee Structure</Button>
+          <Button id="dynamicInvoice">Invoices</Button>
+        </div>
+        <div id="profileDisplay">
+          <p>Jobs, Fee & Invoice components will load here dynamically.</p>
+        </div>
       </div>
     </div>
   )

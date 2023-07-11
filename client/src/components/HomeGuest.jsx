@@ -6,6 +6,7 @@ import secondImage from "../assets/3992745.jpg"
 function HomeGuest() {
   return (
     <Page title="Welcome">
+      <h1 id="welcome"></h1>
       <div id="main">
         <div id="splash">
           <div id="splashOne">
