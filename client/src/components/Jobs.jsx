@@ -1,7 +1,11 @@
 import React, { useEffect } from "react"
 
 function Jobs() {
-  return <></>
+  return (
+    <div>
+      <p>This page will display any currently active jobs.</p>
+    </div>
+  )
 }
 
 export default Jobs

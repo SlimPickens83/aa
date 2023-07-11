@@ -32,7 +32,6 @@ function App() {
   function mainReducer(draft, action) {
     switch (action.type) {
       case "login":
-        alert("You are logged in.")
         draft.loggedIn = true
         draft.user = action.data
         return
