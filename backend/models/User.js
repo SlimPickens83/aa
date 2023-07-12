@@ -1,7 +1,9 @@
 const usersCollection = require("../db").db().collection("users")
+const adminCollection = require("../db").db().collection("admin")
 
 let User = function (data) {
   this.loggedIn = false
+  this.admin = false
   this.data = data
   this.errors = []
 }
@@ -16,12 +18,16 @@ User.prototype.cleanUp = function () {
   if (typeof this.data.password != "string") {
     this.data.password = ""
   }
+  if (typeof this.data.admin != "boolean") {
+    this.data.admin = false
+  }
 
   // get rid of any bogus properties
   this.data = {
     username: this.data.username.trim().toLowerCase(),
     email: this.data.email.trim().toLowerCase(),
-    password: this.data.password
+    password: this.data.password,
+    admin: this.data.admin
   }
 }
 
@@ -52,6 +58,24 @@ User.prototype.register = function () {
     } else {
       reject(this.errors)
     }
+  })
+}
+
+User.prototype.adminLogin = function () {
+  return new Promise((resolve, reject) => {
+    adminCollection
+      .findOne({ adminKey: this.data.adminKey })
+      .then(attemptedAdmin => {
+        if (this.data.adminKey === attemptedAdmin.adminKey) {
+          this.admin = true
+          resolve("Admin login authenticated.")
+        } else {
+          reject("Invalid admin credentials.")
+        }
+      })
+      .catch(function (e) {
+        reject("Unknown error.")
+      })
   })
 }
 

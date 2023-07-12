@@ -21,10 +21,13 @@ import Login from "./components/Login.jsx"
 import Registration from "./components/Registration.jsx"
 import Profile from "./components/Profile.jsx"
 import Commissions from "./components/Commissions.jsx"
+import Admin from "./components/Admin.jsx"
+import AdminLogin from "./components/AdminLogin.jsx"
 
 function App() {
   const initialState = {
     loggedIn: false,
+    admin: false,
     user: {
       username: localStorage.getItem("aaUsername")
     }
@@ -32,6 +35,11 @@ function App() {
 
   function mainReducer(draft, action) {
     switch (action.type) {
+      case "adminLogin":
+        draft.loggedIn = true
+        draft.admin = true
+        draft.user = action.data
+        return
       case "login":
         draft.loggedIn = true
         draft.user = action.data
@@ -60,7 +68,7 @@ function App() {
         <BrowserRouter>
           {state.loggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
           <Routes>
-            <Route path="/" element={state.loggedIn ? <Profile /> : <HomeGuest />} />
+            <Route path="/" element={state.admin ? <Admin /> : state.loggedIn ? <Profile /> : <HomeGuest />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<Freq />} />
@@ -68,6 +76,7 @@ function App() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/commissions" element={<Commissions />} />
+            <Route path="/admin_login" element={<AdminLogin />} />
           </Routes>
           <Footer />
         </BrowserRouter>

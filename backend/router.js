@@ -12,6 +12,7 @@ router.get("/", (req, res) => res.json("Hello, if you see this message that mean
 // User routes
 router.post("/register", userController.register)
 router.post("/login", userController.login)
+router.post("/adminLogin", userController.adminLogin)
 
 // Portal routes
 

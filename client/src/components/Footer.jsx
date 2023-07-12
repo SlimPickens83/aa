@@ -7,7 +7,7 @@ function Footer() {
     <footer>
       <img className="city" src={pitt} alt="" />
       <div style={{ fontSize: 14 }}>
-        <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/contact">Contact</Link>
+        <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/contact">Contact</Link> | <Link to="/admin_login">Admin</Link>
       </div>
       <div style={{ fontSize: 10 }}>
         Images via <a href="https://www.freepik.com/">Freepik</a> & <a href="https://www.unsplash.com">Unsplash</a>
