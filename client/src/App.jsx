@@ -19,7 +19,7 @@ import Contact from "./components/Contact.jsx"
 import Freq from "./components/Freq.jsx"
 import Login from "./components/Login.jsx"
 import Registration from "./components/Registration.jsx"
-import Profile from "./components/Profile.jsx"
+import Portal from "./components/Portal.jsx"
 import Commissions from "./components/Commissions.jsx"
 import Admin from "./components/Admin.jsx"
 import AdminLogin from "./components/AdminLogin.jsx"
@@ -68,13 +68,13 @@ function App() {
         <BrowserRouter>
           {state.loggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
           <Routes>
-            <Route path="/" element={state.admin ? <Admin /> : state.loggedIn ? <Profile /> : <HomeGuest />} />
+            <Route path="/" element={state.admin ? <Admin /> : state.loggedIn ? <Portal /> : <HomeGuest />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<Freq />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/portal" element={<Portal />} />
             <Route path="/commissions" element={<Commissions />} />
             <Route path="/admin_login" element={<AdminLogin />} />
           </Routes>

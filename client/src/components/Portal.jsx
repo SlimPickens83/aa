@@ -1,15 +1,16 @@
-import React, { useEffect, useContext } from "react"
+import React, { useEffect, useReducer, useContext } from "react"
 import Page from "./Page"
 import { useParams, NavLink, Routes, Route } from "react-router-dom"
 import StateContext from "../StateContext"
-import { useImmer } from "use-immer"
+import { useImmer, useImmerReducer } from "use-immer"
 import Button from "react-bootstrap/Button"
-import ClientDefault from "../components/ClientDefault"
-import Jobs from "../components/Jobs"
-import Fee from "../components/Fee"
-import Invoice from "../components/Invoice"
+import ClientDefault from "./ClientDefault"
+import Jobs from "./Jobs"
+import Fee from "./Fee"
+import Invoice from "./Invoice"
+import DispatchContext from "../DispatchContext"
 
-function Profile() {
+function Portal() {
   const appState = useContext(StateContext)
   const [state, setState] = useImmer({
     jobs: false,
@@ -75,12 +76,14 @@ function Profile() {
   }, [state.invoiceCounter])
 
   return (
-    <div id="profileContainer">
-      <div id="profileWelcomeContainer">
+    <div id="portalContainer">
+      <div id="portalWelcomeContainer">
         <div id="welcome">Welcome, {`${appState.user.username}`}!</div>
       </div>
-      <div id="profileMain">
-        <div id="profileSidebar">
+      <div id="portalMain">
+        <div id="portalSidebar">
+          {appState.admin && <Button id="adminButton">Add New Client</Button>}
+          {appState.admin && <Button id="adminButton">Add New Job</Button>}
           <Button onClick={viewJobs} id="currentJobs">
             Current Jobs
           </Button>
@@ -91,10 +94,10 @@ function Profile() {
             Invoices
           </Button>
         </div>
-        <div id="profileDisplay">{state.jobs ? <Jobs /> : state.fee ? <Fee /> : state.invoice ? <Invoice /> : <ClientDefault />}</div>
+        <div id="portalDisplay">{state.jobs ? <Jobs /> : state.fee ? <Fee /> : state.invoice ? <Invoice /> : <ClientDefault />}</div>
       </div>
     </div>
   )
 }
 
-export default Profile
+export default Portal

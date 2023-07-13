@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react"
 import StateContext from "../StateContext"
 import { useImmer } from "use-immer"
 import Button from "react-bootstrap/Button"
-import ClientDefault from "../components/ClientDefault"
+import AdminDefault from "../components/AdminDefault"
 import Jobs from "../components/Jobs"
 import Fee from "../components/Fee"
 import Invoice from "../components/Invoice"
@@ -18,20 +18,80 @@ function Admin() {
     invoiceCounter: 0
   })
 
+  function viewJobs() {
+    setState(draft => {
+      draft.jobsCounter++
+      draft.jobs = true
+    })
+  }
+
+  function clearJobs() {
+    setState(draft => {
+      draft.fee = false
+      draft.invoice = false
+    })
+  }
+
+  function viewFee() {
+    setState(draft => {
+      draft.feeCounter++
+      draft.fee = true
+    })
+  }
+
+  function clearFee() {
+    setState(draft => {
+      draft.jobs = false
+      draft.invoice = false
+    })
+  }
+
+  function viewInvoice() {
+    setState(draft => {
+      draft.invoiceCounter++
+      draft.invoice = true
+    })
+  }
+
+  function clearInvoice() {
+    setState(draft => {
+      draft.jobs = false
+      draft.fee = false
+    })
+  }
+
+  useEffect(() => {
+    clearJobs()
+  }, [state.jobsCounter])
+
+  useEffect(() => {
+    clearFee()
+  }, [state.feeCounter])
+
+  useEffect(() => {
+    clearInvoice()
+  }, [state.invoiceCounter])
+
   return (
-    <div id="adminContainer">
-      <div id="adminWelcomeContainer">
+    <div id="portalContainer">
+      <div id="portalWelcomeContainer">
         <div id="welcome">Welcome, {`${appState.user.username}`}!</div>
       </div>
-      <div id="adminMain">
-        <div id="adminSidebar">
-          <Button id="addClient">Add New Client</Button>
-          <Button id="addJob">Add New Job</Button>
-          <Button id="currentJobs">Current Jobs</Button>
-          <Button id="feeStructure">Fee Structure</Button>
-          <Button id="dynamicInvoice">Invoices</Button>
+      <div id="portalMain">
+        <div id="portalSidebar">
+          <Button id="adminButton">Add New Client</Button>
+          <Button id="adminButton">Add New Job</Button>
+          <Button onClick={viewJobs} id="clientButton">
+            Current Jobs
+          </Button>
+          <Button onClick={viewFee} id="clientButton">
+            Fee Structure
+          </Button>
+          <Button onClick={viewInvoice} id="clientButton">
+            Invoices
+          </Button>
         </div>
-        <div id="adminDisplay">{state.jobs ? <Jobs /> : state.fee ? <Fee /> : state.invoice ? <Invoice /> : <ClientDefault />}</div>
+        <div id="portalDisplay">{state.jobs ? <Jobs /> : state.fee ? <Fee /> : state.invoice ? <Invoice /> : <AdminDefault />}</div>
       </div>
     </div>
   )
