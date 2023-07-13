@@ -1,7 +1,7 @@
 const adminCollection = require("../db").db().collection("admin")
 
 let Admin = function (data) {
-  this.admin = true
+  this.authentic = true
   this.data = data
   this.errors = []
 }
@@ -16,7 +16,7 @@ Admin.prototype.cleanUp = function () {
   }
 }
 
-Admin.prototype.login = function () {
+Admin.prototype.authenticate = function () {
   return new Promise((resolve, reject) => {
     adminCollection
       .findOne({ adminKey: this.data.adminKey })

@@ -8,9 +8,19 @@ let Client = function (data) {
   this.errors = []
 }
 
-this.data = {
-  clientName: this.data.clientName.trim().toLowerCase(),
-  clientKey: this.data.clientKey.trim()
+Client.prototype.cleanUp = function () {
+  if (typeof this.data.clientName != "string") {
+    this.data.clientName = ""
+  }
+
+  if (typeof this.data.clientKey != "string") {
+    this.data.clientKey = ""
+  }
+
+  this.data = {
+    clientName: this.data.clientName.trim().toLowerCase(),
+    clientKey: this.data.clientKey.trim()
+  }
 }
 
 Client.prototype.create = function () {

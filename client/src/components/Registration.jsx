@@ -8,7 +8,6 @@ import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 
 function Registration() {
-  const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
   const navigate = useNavigate()
 
@@ -43,8 +42,11 @@ function Registration() {
       case "password":
         draft.password.value = action.value
         return
+      case "clientKey":
+        draft.clientKey.value = action.value
+        return
       case "submitForm":
-        if (draft.username.value && draft.email.value && draft.password.value) {
+        if (draft.username.value && draft.email.value && draft.password.value && draft.clientKey.value) {
           draft.submitCount++
         }
         return
@@ -58,7 +60,7 @@ function Registration() {
       const ourRequest = Axios.CancelToken.source()
       async function fetchResults() {
         try {
-          const clientResponse = await Axios.post("/clientAuth", clientController.authenticate)
+          const clientResponse = await Axios.post("/clientAuth", { clientKey: state.clientKey.value })
           if (clientResponse.data) {
             appDispatch({ type: "clientAuth" })
             try {
@@ -89,6 +91,7 @@ function Registration() {
     dispatch({ type: "username", value: state.username.value })
     dispatch({ type: "email", value: state.email.value })
     dispatch({ type: "password", value: state.password.value })
+    dispatch({ type: "clientKey", value: state.clientKey.value })
     dispatch({ type: "submitForm" })
   }
 
@@ -113,7 +116,7 @@ function Registration() {
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label style={{ fontSize: "14px" }}>Please enter a valid client key</Form.Label>
-          <Form.Control onChange={e => setClientKey(e.target.value)} type="password" placeholder="Client Key" />
+          <Form.Control onChange={e => dispatch({ type: "clientKey", value: e.target.value })} type="password" placeholder="Client Key" />
         </Form.Group>
 
         <Button id="regSubmit" variant="primary" type="submit">

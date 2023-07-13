@@ -1,5 +1,4 @@
 const usersCollection = require("../db").db().collection("users")
-const adminCollection = require("../db").db().collection("admin")
 
 let User = function (data) {
   this.loggedIn = false
@@ -26,8 +25,7 @@ User.prototype.cleanUp = function () {
   this.data = {
     username: this.data.username.trim().toLowerCase(),
     email: this.data.email.trim().toLowerCase(),
-    password: this.data.password,
-    admin: this.data.admin
+    password: this.data.password
   }
 }
 

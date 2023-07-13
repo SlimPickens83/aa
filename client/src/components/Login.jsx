@@ -9,27 +9,18 @@ function Login(props) {
   const appDispatch = useContext(DispatchContext)
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
-  const [clientKey, setClientKey] = useState()
   const navigate = useNavigate()
 
   async function handleSubmit(e) {
     e.preventDefault()
 
     try {
-      const clientResponse = await Axios.post("/clientVerify", clientController.verify)
-      if (clientResponse.data) {
-        appDispatch({})
-      }
-      try {
-        const response = await Axios.post("/login", { username, password })
-        if (response.data) {
-          appDispatch({ type: "login", data: response.data })
-          navigate("/")
-        } else {
-          console.log(`Incorrect username (${username}) / password (${password})`)
-        }
-      } catch (e) {
-        console.log("Undetermined login error.")
+      const response = await Axios.post("/login", { username, password })
+      if (response.data) {
+        appDispatch({ type: "login", data: response.data })
+        navigate("/")
+      } else {
+        console.log(`Incorrect username (${username}) / password (${password})`)
       }
     } catch (e) {
       console.log("Undetermined login error.")
@@ -48,11 +39,6 @@ function Login(props) {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control onChange={e => setPassword(e.target.value)} type="password" placeholder="Password" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Client Key</Form.Label>
-          <Form.Control onChange={e => setClientKey(e.target.value)} type="password" placeholder="Password" />
         </Form.Group>
 
         <Button id="loginSubmit" variant="primary" type="submit">

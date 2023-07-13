@@ -39,10 +39,8 @@ function App() {
 
   function mainReducer(draft, action) {
     switch (action.type) {
-      case "adminLogin":
-        draft.loggedIn = true
+      case "adminAuthenticate":
         draft.admin = true
-        draft.user = action.data
         return
       case "login":
         draft.loggedIn = true

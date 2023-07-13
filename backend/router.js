@@ -16,7 +16,7 @@ router.post("/register", userController.register)
 router.post("/login", userController.login)
 
 // Admin routes
-router.post("/adminLogin", adminController.login)
+router.post("/adminLogin", adminController.authenticate)
 
 // Client routes
 router.post("/clientAuth", clientController.authenticate)

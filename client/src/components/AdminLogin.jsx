@@ -16,16 +16,25 @@ function Login(props) {
     e.preventDefault()
 
     try {
-      const response = await Axios.post("/adminLogin", { username, password, adminKey })
+      const response = await Axios.post("/adminLogin", { adminKey })
       if (response.data) {
-        appDispatch({ type: "login", data: response.data })
-        appDispatch({ type: "adminLogin", data: response.data })
-        navigate("/")
+        appDispatch({ type: "adminAuthenticate", data: response.data })
+        try {
+          const loginResponse = await Axios.post("/login", { username, password })
+          if (loginResponse.data) {
+            appDispatch({ type: "login", data: loginResponse.data })
+            navigate("/")
+          } else {
+            console.log(`Incorrect username (${username}) / password (${password})`)
+          }
+        } catch {
+          console.log("Undetermined login error.")
+        }
       } else {
-        console.log(`Incorrect username (${username}) / password (${password})`)
+        console.log("Admin access denied.")
       }
     } catch (e) {
-      console.log("Undetermined login error.")
+      console.log("Undetermined authentication error.")
     }
   }
 
@@ -43,7 +52,7 @@ function Login(props) {
           <Form.Control onChange={e => setPassword(e.target.value)} type="password" placeholder="Password" />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3">
           <Form.Label>Admin Key</Form.Label>
           <Form.Control onChange={e => setAdminKey(e.target.value)} type="password" placeholder="Admin Key" />
         </Form.Group>
