@@ -1,6 +1,8 @@
 const express = require("express")
 const router = express.Router()
 const userController = require("./controllers/UserController")
+const clientController = require("./controllers/ClientController")
+const adminController = require("./controllers/AdminController")
 const cors = require("cors")
 
 router.use(cors())
@@ -12,7 +14,12 @@ router.get("/", (req, res) => res.json("Hello, if you see this message that mean
 // User routes
 router.post("/register", userController.register)
 router.post("/login", userController.login)
-router.post("/adminLogin", userController.adminLogin)
+
+// Admin routes
+router.post("/adminLogin", adminController.login)
+
+// Client routes
+router.post("/clientAuth", clientController.authenticate)
 
 // Portal routes
 

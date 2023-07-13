@@ -1,6 +1,6 @@
 const Client = require("../models/Client")
 
-exports.login = function (req, res) {
+exports.authenticate = function (req, res) {
   let client = new Client(req.body)
   client
     .findSingleByKey()

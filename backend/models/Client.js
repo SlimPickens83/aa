@@ -15,8 +15,13 @@ this.data = {
 
 Client.prototype.create = function () {
   return new Promise(async (resolve, reject) => {
-    await clientCollection.insertOne(this.data)
-    resolve()
+    if (!this.errors.length) {
+      await clientCollection.insertOne(this.data)
+      resolve()
+    } else {
+      f
+      reject(this.errors)
+    }
   })
 }
 

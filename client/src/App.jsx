@@ -27,7 +27,11 @@ import AdminLogin from "./components/AdminLogin.jsx"
 function App() {
   const initialState = {
     loggedIn: false,
+    clientAuth: false,
     admin: false,
+    client: {
+      clientname: localStorage.getItem("clientName")
+    },
     user: {
       username: localStorage.getItem("aaUsername")
     }
@@ -49,6 +53,9 @@ function App() {
         draft.loggedIn = true
         draft.user = action.data
         return
+      case "clientAuth":
+        draft.clientAuth = true
+        draft.client = action.data
     }
   }
 

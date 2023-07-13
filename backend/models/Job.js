@@ -1,7 +1,7 @@
 const jobsCollection = require("../db").db().collection("jobs")
 const ObjectId = require("mongodb").ObjectId
 
-jobsCollection.createIndex({ number: 0, start: "date", end: "date", type: "text", billed: 0 })
+jobsCollection.createIndex({ number: 0, start: "date", end: "date", type: "text", billed: 0, client: "" })
 
 let Job = function (data, userId, requestedJobId) {
   this.data = data
@@ -36,7 +36,7 @@ Job.prototype.cleanUp = function () {
     end: this.data.end,
     type: this.data.type,
     billed: this.data.billed,
-    owner: ObjectId(this.userId)
+    client: ObjectId(this.userId)
   }
 }
 
@@ -66,7 +66,7 @@ Job.reusableJobQuery = function (uniqueOperations, finalOperations = []) {
   return new Promise(async function (resolve, reject) {
     let aggOperations = uniqueOperations
       .concat([
-        { $lookup: { from: "jobs", localField: "owner", foreignField: "_id", as: "ownerDocument" } },
+        { $lookup: { from: "jobs", localField: "client", foreignField: "_id", as: "clientDocument" } },
         {
           $project: {
             number: 1,
@@ -74,8 +74,8 @@ Job.reusableJobQuery = function (uniqueOperations, finalOperations = []) {
             end: 1,
             type: 1,
             billed: 1,
-            ownerId: "$owner",
-            owner: { $arrayElemAt: ["$ownerDocument", 0] }
+            clientId: "$client",
+            client: { $arrayElemAt: ["$clientDocument", 0] }
           }
         }
       ])
@@ -104,8 +104,8 @@ Job.findSingleById = function (id) {
   })
 }
 
-Job.findByOwnerId = function (ownerId) {
-  return Job.reusableJobQuery([{ $match: { owner: ownerId } }, { $sort: { start: -1 } }])
+Job.findByClientId = function (clientId) {
+  return Job.reusableJobQuery([{ $match: { client: clientId } }, { $sort: { start: -1 } }])
 }
 
 Job.delete = function (jobIdToDelete) {
@@ -121,9 +121,9 @@ Job.delete = function (jobIdToDelete) {
 }
 
 Job.getJoblist = async function (id) {
-  let jobs = await jobsCollection.find({ ownerId: new ObjectId(id) }).toArray()
+  let jobs = await jobsCollection.find({ clientId: new ObjectId(id) }).toArray()
 
-  return Job.reusableJobQuery([{ $match: { owner: { $in: jobs } } }, { $sort: { start: -1 } }])
+  return Job.reusableJobQuery([{ $match: { client: { $in: jobs } } }, { $sort: { start: -1 } }])
 }
 
 module.exports = Job

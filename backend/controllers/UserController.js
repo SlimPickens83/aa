@@ -15,17 +15,6 @@ exports.login = function (req, res) {
     })
 }
 
-exports.adminLogin = function (req, res) {
-  let user = new User(req.body)
-  user.adminLogin().then(function (result) {
-    res.json({
-      username: user.data.username,
-      loggedIn: user.loggedIn,
-      admin: true
-    })
-  })
-}
-
 exports.register = function (req, res) {
   let user = new User(req.body)
   user

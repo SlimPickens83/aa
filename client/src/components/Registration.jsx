@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import Axios from "axios"
 import { useImmer, useImmerReducer } from "use-immer"
+import StateContext from "../StateContext"
 import DispatchContext from "../DispatchContext"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 
 function Registration() {
+  const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
+  const navigate = useNavigate()
 
   const initialState = {
     username: {
@@ -20,6 +24,9 @@ function Registration() {
       checkCount: 0
     },
     password: {
+      value: ""
+    },
+    clientKey: {
       value: ""
     },
     submitCount: 0
@@ -51,10 +58,25 @@ function Registration() {
       const ourRequest = Axios.CancelToken.source()
       async function fetchResults() {
         try {
-          const response = await Axios.post("/register", { username: state.username.value, email: state.email.value, password: state.password.value })
-          appDispatch({ type: "register" })
+          const clientResponse = await Axios.post("/clientAuth", clientController.authenticate)
+          if (clientResponse.data) {
+            appDispatch({ type: "clientAuth" })
+            try {
+              const response = await Axios.post("/register", { username: state.username.value, email: state.email.value, password: state.password.value })
+              if (response.data) {
+                appDispatch({ type: "register" })
+                navigate("/")
+              } else {
+                console.log("Registration error.")
+              }
+            } catch (e) {
+              console.log("There was a problem or the request was canceled.")
+            }
+          } else {
+            console.log("Invalid client key.")
+          }
         } catch (e) {
-          console.log("There was a problem or the request was canceled.")
+          console.log("Undetermined client authentication error.")
         }
       }
       fetchResults()
@@ -87,6 +109,11 @@ function Registration() {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label style={{ fontSize: "14px" }}>Please create a secure password.</Form.Label>
           <Form.Control onChange={e => dispatch({ type: "password", value: e.target.value })} type="password" placeholder="Password" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label style={{ fontSize: "14px" }}>Please enter a valid client key</Form.Label>
+          <Form.Control onChange={e => setClientKey(e.target.value)} type="password" placeholder="Client Key" />
         </Form.Group>
 
         <Button id="regSubmit" variant="primary" type="submit">
