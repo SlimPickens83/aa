@@ -1,7 +1,7 @@
-const clientCollection = require("../db").db().collection("clients")
+const clientsCollection = require("../db").db().collection("clients")
 const ObjectId = require("mongodb").ObjectId
 
-clientCollection.createIndex({ clientName: "text", clientKey: "text" })
+clientsCollection.createIndex({ clientName: "text", clientKey: "text" })
 
 let Client = function (data) {
   this.data = data
@@ -26,7 +26,7 @@ Client.prototype.cleanUp = function () {
 Client.prototype.create = function () {
   return new Promise(async (resolve, reject) => {
     if (!this.errors.length) {
-      await clientCollection.insertOne(this.data)
+      await clientsCollection.insertOne(this.data)
       resolve()
     } else {
       f
@@ -35,40 +35,30 @@ Client.prototype.create = function () {
   })
 }
 
-Client.reusableClientQuery = function (uniqueOperations, finalOperations = []) {
-  return new Promise(async function (resolve, reject) {
-    let aggOperations = uniqueOperations
-      .concat([
-        { $lookup: { from: "clients", localField: "clientKey", foreignField: "clientKey", as: "clientDocument" } },
-        {
-          $project: {
-            clientKey: "$clientKey",
-            clientName: { $arrayElemAt: ["$clientDocument", 0] }
-          }
-        }
-      ])
-      .concat(finalOperations)
-
-    let client = await clientCollection.aggregate(aggOperations).toArray()
-
-    resolve(client)
-  })
-}
-
-Client.findSingleByKey = function (key) {
-  return new Promise(async function (resolve, reject) {
-    if (typeof key != "string") {
+Client.prototype.findByKey = function (visitorKey) {
+  return new Promise(function (resolve, reject) {
+    if (typeof visitorKey != "string") {
       reject()
       return
     }
-
-    let client = await Client.reusableClientQuery([{ $match: { clientKey: key } }])
-
-    if (client.length) {
-      resolve(client[0])
-    } else {
-      reject()
-    }
+    clientsCollection
+      .findOne({ clientKey: visitorKey })
+      .then(function (clientDoc) {
+        if (clientDoc) {
+          clientDoc = new Client(clientDoc, true)
+          clientDoc = {
+            _id: clientDoc.data._id,
+            clientName: clientDoc.data.clientName,
+            clientKey: clientDoc.data.clientKey
+          }
+          resolve(clientDoc)
+        } else {
+          reject()
+        }
+      })
+      .catch(function (e) {
+        reject()
+      })
   })
 }
 

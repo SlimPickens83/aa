@@ -9,6 +9,7 @@ import logo from "../assets/aa-p_mk2.png"
 function HeaderLoggedIn() {
   return (
     <Navbar id="header" expand="lg" data-bs-theme="light">
+      <div className="alert construction alert-warning">Under construction.</div>
       <Container id="headerContainer">
         <div id="headerChild">
           <Link to="/" className="navbar-brand">
