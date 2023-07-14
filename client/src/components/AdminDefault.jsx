@@ -2,8 +2,21 @@ import React, { useEffect } from "react"
 
 function AdminDefault() {
   return (
-    <div>
-      <p>This is the default view for the admin portal.</p>
+    <div id="adminDashboardContainer">
+      <p>Administrative Dashboard</p>
+      <div id="adminDashTop">
+        <div id="adminDashCard"></div>
+        <div id="adminDashCard"></div>
+        <div id="adminDashCard"></div>
+        <div id="adminDashCard"></div>
+      </div>
+      <div id="adminDashMid">
+        <div id="adminChart"></div>
+        <div id="adminChart"></div>
+      </div>
+      <div id="adminDashBottom">
+        <div id="adminDataTable"></div>
+      </div>
     </div>
   )
 }

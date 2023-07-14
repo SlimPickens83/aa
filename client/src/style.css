@@ -235,6 +235,48 @@ h1 {
   flex-direction: column;
 }
 
+#adminDashboardContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 12px;
+}
+
+#adminDashTop {
+  display: flex;
+  height: 10%;
+  gap: 12px;
+}
+
+#adminDashCard {
+  background-color: #0d6efd;
+  flex: 1;
+  border-radius: 6px;
+}
+
+#adminDashMid {
+  display: flex;
+  height: 40%;
+  gap: 12px;
+}
+
+#adminChart {
+  background-color: #99aac7;
+  flex: 1;
+  border-radius: 3px;
+}
+
+#adminDashBottom {
+  height: 40%;
+  display: flex;
+}
+
+#adminDataTable {
+  background-color: #b9c2d2;
+  flex: 1;
+  border-radius: 3px;
+}
+
 .logo {
   width: 80%;
 }
