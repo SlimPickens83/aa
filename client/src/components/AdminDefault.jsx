@@ -3,7 +3,7 @@ import React, { useEffect } from "react"
 function AdminDefault() {
   return (
     <div id="adminDashboardContainer">
-      <p>Administrative Dashboard</p>
+      <p id="adminDashHeader">Administrative Dashboard</p>
       <div id="adminDashTop">
         <div id="adminDashCard"></div>
         <div id="adminDashCard"></div>

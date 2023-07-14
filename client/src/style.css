@@ -242,6 +242,12 @@ h1 {
   gap: 12px;
 }
 
+#adminDashHeader {
+  font-size: 28px;
+  vertical-align: center;
+  padding: 6px 0px 0px 12px;
+}
+
 #adminDashTop {
   display: flex;
   height: 10%;
