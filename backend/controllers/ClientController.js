@@ -1,12 +1,16 @@
 const Client = require("../models/Client")
 
 exports.authenticate = async function (req, res) {
-  try {
-    let client = await Client.findByKey(req.body.clientKey)
-    res.json(client)
-  } catch (e) {
-    res.json(false)
-  }
+  Client.findByKey(req.body.clientKey)
+    .then(() => {
+      res.json(req.body.clientKey)
+    })
+    // .then(function (clientDocument) {
+    //   res.json(clientDocument)
+    // })
+    .catch(function (e) {
+      res.json(false)
+    })
 }
 
 exports.create = function (req, res) {

@@ -57,16 +57,17 @@ function Registration() {
 
   useEffect(() => {
     if (state.submitCount) {
+      console.log(state.clientKey.value)
       const ourRequest = Axios.CancelToken.source()
       async function fetchResults() {
         try {
           const clientResponse = await Axios.post("/clientAuth", { clientKey: state.clientKey.value })
-          if (clientResponse.data) {
+          if (clientResponse) {
             appDispatch({ type: "clientAuth" })
             try {
               const response = await Axios.post("/register", { username: state.username.value, email: state.email.value, password: state.password.value })
               if (response.data) {
-                appDispatch({ type: "register" })
+                appDispatch({ type: "register", data: response.data })
                 navigate("/")
               } else {
                 console.log("Registration error.")
@@ -114,7 +115,7 @@ function Registration() {
           <Form.Control onChange={e => dispatch({ type: "password", value: e.target.value })} type="password" placeholder="Password" />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3" controlId="formClientKey">
           <Form.Label style={{ fontSize: "14px" }}>Please enter a valid client key</Form.Label>
           <Form.Control onChange={e => dispatch({ type: "clientKey", value: e.target.value })} type="password" placeholder="Client Key" />
         </Form.Group>

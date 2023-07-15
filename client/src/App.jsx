@@ -47,7 +47,6 @@ function App() {
         draft.user = action.data
         return
       case "register":
-        alert("Congratulations on registering for your new account.")
         draft.loggedIn = true
         draft.user = action.data
         return
