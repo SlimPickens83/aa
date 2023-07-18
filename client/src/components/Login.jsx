@@ -41,6 +41,10 @@ function Login(props) {
           <Form.Control onChange={e => setPassword(e.target.value)} type="password" placeholder="Password" />
         </Form.Group>
 
+        <div className="alert alert-info" role="alert" style={{ width: 220 }}>
+          For preview purporses, visitors can login with "guest" / "guest" or visit the registration page.
+        </div>
+
         <Button id="loginSubmit" variant="primary" type="submit">
           Submit
         </Button>

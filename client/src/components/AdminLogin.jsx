@@ -57,6 +57,10 @@ function Login(props) {
           <Form.Control onChange={e => setAdminKey(e.target.value)} type="password" placeholder="Admin Key" />
         </Form.Group>
 
+        <div className="alert alert-info" role="alert" style={{ width: 216 }}>
+          For preview purposes, visitors can use "guest" as the Admin Key.
+        </div>
+
         <Button id="loginSubmit" variant="primary" type="submit">
           Submit
         </Button>

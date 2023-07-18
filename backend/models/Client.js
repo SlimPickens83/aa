@@ -35,14 +35,14 @@ Client.prototype.create = function () {
   })
 }
 
-Client.prototype.findByKey = function (visitorKey) {
+Client.prototype.findByKey = function (clientKey) {
   return new Promise(function (resolve, reject) {
-    if (typeof visitorKey != "string") {
+    if (typeof clientKey != "string") {
       reject()
       return
     }
     clientsCollection
-      .findOne({ clientKey: visitorKey })
+      .findOne({ clientKey: clientKey })
       .then(function (clientDoc) {
         if (clientDoc) {
           clientDoc = new Client(clientDoc, true)

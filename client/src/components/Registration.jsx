@@ -55,37 +55,46 @@ function Registration() {
 
   const [state, dispatch] = useImmerReducer(regReducer, initialState)
 
+  const checkResponse = (errorMessage) => (response) => {
+    if (response.data) return response.data
+    throw new Error(errorMessage)
+  }
+  
+  const clientAuth = () =>
+    Axios.post("/clientAuth", { clientKey: state.clientKey.value })
+      .then(checkResponse("Invalid client key.")
+      .then(() => appDispatch({ type: "clientAuth" }))
+      .catch(() => {
+        throw new Error("Undetermined client authentication error.")
+      })
+  
+  const register = () =>
+    Axios.post("/register", {
+      username: state.username.value,
+      email: state.email.value,
+      password: state.password.value,
+    })
+      .then(checkResponse("Registration error."))
+      .then((data) => appDispatch({ type: "register", data }))
+      .catch(() => {
+        throw new Error("There was a problem or the request was canceled.")
+      })
+  
+  const redirectToRoot = () => navigate("/")
+  
+  const logError = (e) = console.log(e.message)
+  
   useEffect(() => {
     if (state.submitCount) {
       console.log(state.clientKey.value)
       const ourRequest = Axios.CancelToken.source()
-      async function fetchResults() {
-        try {
-          const clientResponse = await Axios.post("/clientAuth", { clientKey: state.clientKey.value })
-          if (clientResponse) {
-            appDispatch({ type: "clientAuth" })
-            try {
-              const response = await Axios.post("/register", { username: state.username.value, email: state.email.value, password: state.password.value })
-              if (response.data) {
-                appDispatch({ type: "register", data: response.data })
-                navigate("/")
-              } else {
-                console.log("Registration error.")
-              }
-            } catch (e) {
-              console.log("There was a problem or the request was canceled.")
-            }
-          } else {
-            console.log("Invalid client key.")
-          }
-        } catch (e) {
-          console.log("Undetermined client authentication error.")
-        }
-      }
-      fetchResults()
+      clientAuth()
+        .then(regeister)
+        .then(redirectToRoot)
+        .catch(logError)
       return () => ourRequest.cancel()
     }
-  }, [state.submitCount])
+   }, [state.submitCount])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -119,6 +128,10 @@ function Registration() {
           <Form.Label style={{ fontSize: "14px" }}>Please enter a valid client key</Form.Label>
           <Form.Control onChange={e => dispatch({ type: "clientKey", value: e.target.value })} type="password" placeholder="Client Key" />
         </Form.Group>
+
+        <div className="alert alert-info" role="alert" style={{ width: 220 }}>
+          For preview purposes, visitors can use "guest" as a Client Key.
+        </div>
 
         <Button id="regSubmit" variant="primary" type="submit">
           Submit
