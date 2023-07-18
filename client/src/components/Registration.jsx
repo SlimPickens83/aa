@@ -55,46 +55,43 @@ function Registration() {
 
   const [state, dispatch] = useImmerReducer(regReducer, initialState)
 
-  const checkResponse = (errorMessage) => (response) => {
+  const checkResponse = errorMessage => response => {
     if (response.data) return response.data
     throw new Error(errorMessage)
   }
-  
+
   const clientAuth = () =>
     Axios.post("/clientAuth", { clientKey: state.clientKey.value })
-      .then(checkResponse("Invalid client key.")
+      .then(checkResponse("Invalid client key."))
       .then(() => appDispatch({ type: "clientAuth" }))
       .catch(() => {
         throw new Error("Undetermined client authentication error.")
       })
-  
+
   const register = () =>
     Axios.post("/register", {
       username: state.username.value,
       email: state.email.value,
-      password: state.password.value,
+      password: state.password.value
     })
       .then(checkResponse("Registration error."))
-      .then((data) => appDispatch({ type: "register", data }))
+      .then(data => appDispatch({ type: "register", data }))
       .catch(() => {
         throw new Error("There was a problem or the request was canceled.")
       })
-  
+
   const redirectToRoot = () => navigate("/")
-  
-  const logError = (e) = console.log(e.message)
-  
+
+  const logError = "error"
+
   useEffect(() => {
     if (state.submitCount) {
       console.log(state.clientKey.value)
       const ourRequest = Axios.CancelToken.source()
-      clientAuth()
-        .then(regeister)
-        .then(redirectToRoot)
-        .catch(logError)
+      clientAuth().then(register).then(redirectToRoot).catch(logError)
       return () => ourRequest.cancel()
     }
-   }, [state.submitCount])
+  }, [state.submitCount])
 
   function handleSubmit(e) {
     e.preventDefault()
