@@ -28,6 +28,9 @@ function Registration() {
     clientKey: {
       value: ""
     },
+    errors: {
+      value: ""
+    },
     submitCount: 0
   }
 
@@ -50,45 +53,48 @@ function Registration() {
           draft.submitCount++
         }
         return
+      case "errors":
+        draft.errors.value = action.value
+        return
     }
   }
 
   const [state, dispatch] = useImmerReducer(regReducer, initialState)
 
-  const checkResponse = errorMessage => response => {
-    if (response.data) return response.data
-    throw new Error(errorMessage)
+  const clientAuth = async function () {
+    await Axios.post("/clientAuth", { clientKey: state.clientKey.value })
+      .then(() => appDispatch({ type: "clientAuth" }))
+      .catch(() => dispatch({ type: "errors", value: "Undetermined client authentication error." }))
   }
 
-  const clientAuth = () =>
-    Axios.post("/clientAuth", { clientKey: state.clientKey.value })
-      .then(checkResponse("Invalid client key."))
-      .then(() => appDispatch({ type: "clientAuth" }))
-      .catch(() => {
-        throw new Error("Undetermined client authentication error.")
+  const register = async function () {
+    try {
+      const response = await Axios.post("/register", {
+        username: state.username.value,
+        email: state.email.value,
+        password: state.password.value
       })
-
-  const register = () =>
-    Axios.post("/register", {
-      username: state.username.value,
-      email: state.email.value,
-      password: state.password.value
-    })
-      .then(checkResponse("Registration error."))
-      .then(data => appDispatch({ type: "register", data }))
-      .catch(() => {
-        throw new Error("There was a problem or the request was canceled.")
-      })
+      appDispatch({ type: "register", data: response.data.user.data })
+    } catch {
+      dispatch({ type: "errors", value: "There was a problem or the request was canceled." })
+    }
+  }
 
   const redirectToRoot = () => navigate("/")
 
-  const logError = "error"
+  useEffect(() => {
+    if (state.errors.value) {
+      console.log(state.errors.value)
+    }
+  }, [state.errors])
 
   useEffect(() => {
     if (state.submitCount) {
-      console.log(state.clientKey.value)
       const ourRequest = Axios.CancelToken.source()
-      clientAuth().then(register).then(redirectToRoot).catch(logError)
+      clientAuth()
+        .then(register)
+        .then(redirectToRoot)
+        .catch(() => dispatch({ type: "errors", value: "There was a problem." }))
       return () => ourRequest.cancel()
     }
   }, [state.submitCount])
@@ -127,7 +133,7 @@ function Registration() {
         </Form.Group>
 
         <div className="alert alert-info" role="alert" style={{ width: 220 }}>
-          For preview purposes, visitors can use "guest" as a Client Key.
+          For preview purposes, visitors can use "guest" as a Client Key. Registration will fail without one, also if password is less than eight characters or if email is not a valid email address. Finished site will dynamically display messages to user to notify them whether their proposed credentials are properly formatted.
         </div>
 
         <Button id="regSubmit" variant="primary" type="submit">

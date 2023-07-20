@@ -29,11 +29,11 @@ function App() {
     loggedIn: false,
     clientAuth: false,
     admin: false,
-    client: {
-      clientname: localStorage.getItem("clientName")
-    },
     user: {
       username: localStorage.getItem("aaUsername")
+    },
+    clientData: {
+      clientName: localStorage.getItem("clientName")
     }
   }
 
@@ -65,6 +65,14 @@ function App() {
       localStorage.removeItem("aaUsername")
     }
   }, [state.loggedIn])
+
+  useEffect(() => {
+    if (state.clientAuth) {
+      localStorage.setItem("clientName", state.clientData.clientName)
+    } else {
+      localStorage.removeItem("clientName")
+    }
+  }, [state.clientAuth])
 
   return (
     <StateContext.Provider value={state}>

@@ -1,7 +1,7 @@
 const clientsCollection = require("../db").db().collection("clients")
 const ObjectId = require("mongodb").ObjectId
 
-clientsCollection.createIndex({ clientName: "text", clientKey: "text" })
+// clientsCollection.createIndex({ clientName: "text", clientKey: "text" })
 
 let Client = function (data) {
   this.data = data
@@ -35,7 +35,7 @@ Client.prototype.create = function () {
   })
 }
 
-Client.prototype.findByKey = function (clientKey) {
+Client.findByKey = function (clientKey) {
   return new Promise(function (resolve, reject) {
     if (typeof clientKey != "string") {
       reject()
@@ -47,7 +47,7 @@ Client.prototype.findByKey = function (clientKey) {
         if (clientDoc) {
           clientDoc = new Client(clientDoc, true)
           clientDoc = {
-            _id: clientDoc.data._id,
+            id: clientDoc.data._id,
             clientName: clientDoc.data.clientName,
             clientKey: clientDoc.data.clientKey
           }

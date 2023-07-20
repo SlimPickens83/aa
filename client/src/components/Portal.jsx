@@ -14,7 +14,9 @@ function Portal() {
   const appState = useContext(StateContext)
   const [state, setState] = useImmer({
     jobs: false,
-    jobsCounter: 0,
+    jobCounter: 0,
+    clients: false,
+    clientCounter: 0,
     fee: false,
     feeCounter: 0,
     invoice: false,
@@ -23,13 +25,29 @@ function Portal() {
 
   function viewJobs() {
     setState(draft => {
-      draft.jobsCounter++
-      draft.jobs = true
+      draft.jobCounter++
+      draft.job = true
     })
   }
 
   function clearJobs() {
     setState(draft => {
+      draft.clients = false
+      draft.fee = false
+      draft.invoice = false
+    })
+  }
+
+  function viewClients() {
+    setState(draft => {
+      draft.clientCounter++
+      draft.client = true
+    })
+  }
+
+  function clearClients() {
+    setState(draft => {
+      draft.jobs = false
       draft.fee = false
       draft.invoice = false
     })
@@ -45,6 +63,7 @@ function Portal() {
   function clearFee() {
     setState(draft => {
       draft.jobs = false
+      draft.clients = false
       draft.invoice = false
     })
   }
@@ -59,6 +78,7 @@ function Portal() {
   function clearInvoice() {
     setState(draft => {
       draft.jobs = false
+      draft.clients = false
       draft.fee = false
     })
   }
@@ -66,6 +86,10 @@ function Portal() {
   useEffect(() => {
     clearJobs()
   }, [state.jobsCounter])
+
+  useEffect(() => {
+    clearClients()
+  }, [state.clientCounter])
 
   useEffect(() => {
     clearFee()
@@ -86,6 +110,9 @@ function Portal() {
           {appState.admin && <Button id="adminButton">Add New Job</Button>}
           <Button onClick={viewJobs} id="currentJobs">
             Current Jobs
+          </Button>
+          <Button onClick={viewClients} id="activeClients">
+            Active Clients
           </Button>
           <Button onClick={viewFee} id="feeStructure">
             Fee Structure

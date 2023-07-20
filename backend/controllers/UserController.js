@@ -21,7 +21,7 @@ exports.register = function (req, res) {
     .register()
     .then(() => {
       res.json({
-        username: user.data.username
+        user: user
       })
     })
     .catch(regErrors => {

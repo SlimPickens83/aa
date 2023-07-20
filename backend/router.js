@@ -19,7 +19,7 @@ router.post("/login", userController.login)
 router.post("/adminLogin", adminController.authenticate)
 
 // Client routes
-router.post("/clientAuth", clientController.authenticate)
+router.post("/clientAuth", clientController.ifClientExists, clientController.clientData)
 
 // Portal routes
 

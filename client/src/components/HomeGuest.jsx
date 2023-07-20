@@ -12,7 +12,7 @@ function HomeGuest() {
           <div id="splashOne">
             <div id="topChild">
               <h2 style={{ color: "text-secondary" }}>Effective business accounting serving the Pittsburgh area.</h2>
-              <p>Here you're going to read some flowery prose about how great we are. Take our word for it--we'll hook you up with the best accounting you've ever seen.</p>
+              <p>AccountAbility Pittsburgh has been serving clients in the greater Pittsburgh area going on two decades. We provide accurate, high efficiency financial accounting to save you time and money. Let us handle the numbers, so you can focus on what matters most – growing your business.</p>
             </div>
             <div id="topChild">
               <img id="topImage" src={topImage} alt="" />
@@ -23,22 +23,22 @@ function HomeGuest() {
               <img id="secondImage" src={secondImage} alt="" />
             </div>
             <div id="secondChild">
-              <h2 style={{ color: "text-secondary" }}>Gosh, money is hard ain't it?</h2>
-              <p>That's why you need us. Set up a meet cute with one of our staff and we'll show you why you'll never have to worry about all those hard numbers anymore.</p>
+              <h2 style={{ color: "text-secondary" }}>We make cash flow.</h2>
+              <p>With years of experience serving small businesses, we've honed our expertise to deliver top-notch accounting solutions that truly make a difference. We specialize in simplifying your financial processes, ensuring compliance, and maximizing your profits. Our comprehensive suite of accounting services, including bookkeeping, tax planning, and financial consulting, is designed to meet your specific needs.</p>
             </div>
           </div>
           <div id="splashThree">
             <div id="thirdChild">
-              <h3 style={{ color: "text-secondary" }}>This is what we do.</h3>
-              <p>Numbers. Dollars. Spreadsheets. Blah blah blah. Who cares about this stuff? You just want to get paid, right? We make it easier.</p>
+              <h3 style={{ color: "text-secondary" }}>Excellence comes standard.</h3>
+              <p>At AccountAbility Pittsburgh, excellence is at the core of everything we do. As your dedicated financial advisors we take the time to understand your business goals, allowing us to tailor our services to your unique requirements.</p>
             </div>
             <div id="thirdChild">
-              <h4 style={{ color: "text-secondary" }}>Consultation</h4>
-              <p>Don't get us wrong, we're here to get ours too. We're begging you to come in so we can sucker you into using us to handle your filthy lucre. Dollar dollar bills, y'all!</p>
+              <h4 style={{ color: "text-secondary" }}>It's business; it's personal.</h4>
+              <p>Your small business is unique, and so are your accounting needs. We take pride in delivering personalized financial solutions that cater to your specific challenges and aspirations. </p>
             </div>
             <div id="thirdChild">
-              <h4 style={{ color: "text-secondary" }}>GIVE US YOUR MONEY</h4>
-              <p>Give it here. Give it now. Give freely. Don't think about it. Just sign the check and nobody gets hurt.</p>
+              <h4 style={{ color: "text-secondary" }}>Consult with us today!</h4>
+              <p>We believe AccountAbility Pittsburgh has the solutions your business needs to thrive. Visit our contact page to reach out for a consultation and one of our staff will be in touch with you promptly.</p>
             </div>
           </div>
           <div id="splashFour">

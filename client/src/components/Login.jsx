@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import Axios from "axios"
 import DispatchContext from "../DispatchContext"
 import Button from "react-bootstrap/Button"
@@ -42,12 +42,15 @@ function Login(props) {
         </Form.Group>
 
         <div className="alert alert-info" role="alert" style={{ width: 220 }}>
-          For preview purporses, visitors can login with "guest" / "guest" or visit the registration page.
+          For preview purporses, visitors can login with "guest" / "guest123" or visit the registration page.
         </div>
 
         <Button id="loginSubmit" variant="primary" type="submit">
           Submit
         </Button>
+        <Link to="/admin_login" style={{ fontSize: 12 }}>
+          Login as Admin
+        </Link>
       </Form>
     </div>
   )
