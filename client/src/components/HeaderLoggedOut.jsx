@@ -26,16 +26,13 @@ function HeaderLoggedOut() {
               About
             </Link>
             <NavDropdown className="btn-primary" title="Client Portal" id="basic-nav-dropdown">
-              <NavDropdown.Item>
-                <Link to="/login">Sign In</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to="/registration">Register</Link>
-              </NavDropdown.Item>
+              <Link to="/login">Sign In</Link>
+
+              <Link to="/registration">Register</Link>
+
               <NavDropdown.Divider />
-              <NavDropdown.Item>
-                <Link to="/commissions">CommissionsPro</Link>
-              </NavDropdown.Item>
+
+              <Link to="/commissions">CommissionsPro</Link>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
