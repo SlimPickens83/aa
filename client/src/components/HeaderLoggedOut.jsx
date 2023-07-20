@@ -19,14 +19,15 @@ function HeaderLoggedOut() {
         </div>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link to="/faq" id="headerGrandchild" className="nav-link active">
+            <Link to="/faq" id="headerGrandchild">
               FAQ
             </Link>
-            <Link to="/about" id="headerGrandchild" className="nav-link active">
+            <Link to="/about" id="headerGrandchild">
               About
             </Link>
             <NavDropdown className="btn-primary" title="Client Portal" id="basic-nav-dropdown">
               <Link to="/login">Sign In</Link>
+              <p></p>
 
               <Link to="/registration">Register</Link>
 
