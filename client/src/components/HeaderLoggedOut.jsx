@@ -29,9 +29,13 @@ function HeaderLoggedOut() {
               <NavDropdown.Item>
                 <Link to="/login">Sign In</Link>
               </NavDropdown.Item>
-              <NavDropdown.Item to="/registration">Register</NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/registration">Register</Link>
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item to="/commissions">CommissionsPro</NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/commissions">CommissionsPro</Link>
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
