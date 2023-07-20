@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client"
 import { useImmerReducer } from "use-immer"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Axios from "axios"
-Axios.defaults.baseURL = process.env.BACKENDURL || "https://aapbackend.onrender.com"
+Axios.defaults.baseURL = "http://localhost:3000" || "https://aapbackend.onrender.com/"
 
 import StateContext from "./StateContext.jsx"
 import DispatchContext from "./DispatchContext.jsx"
