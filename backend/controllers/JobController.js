@@ -34,3 +34,7 @@ exports.update = function (req, res) {
       res.json("no permissions")
     })
 }
+
+exports.request = function (req, res) {
+  console.log("Feature pending.")
+}

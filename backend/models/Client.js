@@ -17,9 +17,14 @@ Client.prototype.cleanUp = function () {
     this.data.clientKey = ""
   }
 
+  if (typeof this.data.accountKey != "string") {
+    this.data.accountKey = ""
+  }
+
   this.data = {
     clientName: this.data.clientName.trim().toLowerCase(),
-    clientKey: this.data.clientKey.trim()
+    clientKey: this.data.clientKey,
+    accountKey: this.data.accountKey
   }
 }
 

@@ -5,31 +5,50 @@ const validator = require("validator")
 let User = function (data) {
   this.loggedIn = false
   this.admin = false
+  this.client = false
+  this.employee = false
   this.data = data
   this.errors = []
 }
 
 User.prototype.cleanUp = function () {
-  if (typeof this.data.username != "string") {
-    this.data.username = ""
-  }
-  if (typeof this.data.email != "string") {
-    this.data.email = ""
-  }
-  if (typeof this.data.password != "string") {
-    this.data.password = ""
-  }
-  if (typeof this.data.admin != "boolean") {
-    this.data.admin = false
-  }
+  const userInput = [username, email, password, firstName, lastName, adminKey, accountKey, clientKey]
+  userInput.forEach(input => {
+    if (typeof this.data.input != "string") {
+      this.data.input = ""
+    }
+  })
 
-  // get rid of any bogus properties
   this.data = {
     username: this.data.username.trim().toLowerCase(),
     email: this.data.email.trim().toLowerCase(),
-    password: this.data.password
+    password: this.data.password,
+    firstName: this.data.firstName,
+    lastName: this.data.lastName,
+    adminKey: this.data.adminKey,
+    accountKey: this.data.accountKey,
+    clientKey: this.data.clientKey
   }
 }
+
+// User.prototype.cleanUp = function () {
+//   if (typeof this.data.username != "string") {
+//     this.data.username = ""
+//   }
+//   if (typeof this.data.email != "string") {
+//     this.data.email = ""
+//   }
+//   if (typeof this.data.password != "string") {
+//     this.data.password = ""
+//   }
+
+//   // get rid of any bogus properties
+//   this.data = {
+//     username: this.data.username.trim().toLowerCase(),
+//     email: this.data.email.trim().toLowerCase(),
+//     password: this.data.password
+//   }
+// }
 
 User.prototype.validate = function () {
   return new Promise(async (resolve, reject) => {
