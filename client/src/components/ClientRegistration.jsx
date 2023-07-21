@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useContext } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import React, { useEffect, useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import Axios from "axios"
-import { useImmer, useImmerReducer } from "use-immer"
-import StateContext from "../StateContext"
+import { useImmerReducer } from "use-immer"
 import DispatchContext from "../DispatchContext"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 
-function Registration() {
+function ClientRegistration() {
   const appDispatch = useContext(DispatchContext)
   const navigate = useNavigate()
 
@@ -25,7 +24,7 @@ function Registration() {
     password: {
       value: ""
     },
-    clientKey: {
+    accountKey: {
       value: ""
     },
     errors: {
@@ -45,11 +44,11 @@ function Registration() {
       case "password":
         draft.password.value = action.value
         return
-      case "clientKey":
-        draft.clientKey.value = action.value
+      case "accountKey":
+        draft.accountKey.value = action.value
         return
       case "submitForm":
-        if (draft.username.value && draft.email.value && draft.password.value && draft.clientKey.value) {
+        if (draft.username.value && draft.email.value && draft.password.value && draft.accountKey.value) {
           draft.submitCount++
         }
         return
@@ -61,15 +60,15 @@ function Registration() {
 
   const [state, dispatch] = useImmerReducer(regReducer, initialState)
 
-  const clientAuth = async function () {
-    await Axios.post("/clientAuth", { clientKey: state.clientKey.value }, "clientKey")
-      .then(() => appDispatch({ type: "clientAuth" }))
-      .catch(() => dispatch({ type: "errors", value: "Undetermined client authentication error." }))
+  const accountAuth = async function () {
+    await Axios.post("/clientAuth", { accountKey: state.accountKey.value, type: "accountKey" })
+      .then(() => appDispatch({ type: "accountAuth" }))
+      .catch(() => dispatch({ type: "errors", value: "Undetermined account authentication error." }))
   }
 
   const register = async function () {
     try {
-      const response = await Axios.post("/register", {
+      const response = await Axios.post("/clientRegister", {
         username: state.username.value,
         email: state.email.value,
         password: state.password.value
@@ -91,11 +90,10 @@ function Registration() {
   useEffect(() => {
     if (state.submitCount) {
       const ourRequest = Axios.CancelToken.source()
-      clientAuth()
+      accountAuth()
         .then(register)
         .then(redirectToRoot)
-        .catch(() => dispatch({ type: "errors", value: "There was a problem." }))
-      return () => ourRequest.cancel()
+        .catch(() => dispatch({ type: "errors", value: "There was a problem" }))
     }
   }, [state.submitCount])
 
@@ -104,16 +102,13 @@ function Registration() {
     dispatch({ type: "username", value: state.username.value })
     dispatch({ type: "email", value: state.email.value })
     dispatch({ type: "password", value: state.password.value })
-    dispatch({ type: "clientKey", value: state.clientKey.value })
+    dispatch({ type: "accountKey", value: state.accountKey.value })
     dispatch({ type: "submitForm" })
   }
 
   return (
     <div id="registerContainer">
-      <h1 className="text-primary">Registration</h1>
-      <Link to="/clientRegistration" style={{ fontSize: 14, marginBottom: 24 }}>
-        For client registration click here.
-      </Link>
+      <h1 className="text-primary">Client Registration</h1>
       <Form onSubmit={handleSubmit} id="register">
         <Form.Group className="mb-3" controlId="formBasicUsername">
           <Form.Label style={{ fontSize: "14px" }}>Please create a username.</Form.Label>
@@ -130,13 +125,13 @@ function Registration() {
           <Form.Control onChange={e => dispatch({ type: "password", value: e.target.value })} type="password" placeholder="Password" />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formClientKey">
-          <Form.Label style={{ fontSize: "14px" }}>Please enter a valid client key</Form.Label>
-          <Form.Control onChange={e => dispatch({ type: "clientKey", value: e.target.value })} type="password" placeholder="Client Key" />
+        <Form.Group className="mb-3" controlId="formAccountKey">
+          <Form.Label style={{ fontSize: "14px" }}>Please enter a valid account key</Form.Label>
+          <Form.Control onChange={e => dispatch({ type: "accountKey", value: e.target.value })} type="password" placeholder="Account Key" />
         </Form.Group>
 
         <div className="alert alert-info" role="alert" style={{ width: 220 }}>
-          For preview purposes, visitors can use "guest" as a Client Key. Registration will fail without one, also if password is less than eight characters or if email is not a valid email address. Finished site will dynamically display messages to user to notify them whether their proposed credentials are properly formatted.
+          For preview purposes, visitors can use "guest" as an account key. Registration will fail without one, also if password is less than eight characters or if email is not a valid email address. Finished site will dynamically display messages to user to notify them whether their proposed credentials are properly formatted.
         </div>
 
         <Button id="regSubmit" variant="primary" type="submit">
@@ -147,4 +142,4 @@ function Registration() {
   )
 }
 
-export default Registration
+export default ClientRegistration

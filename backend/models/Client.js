@@ -28,7 +28,7 @@ Client.prototype.cleanUp = function () {
   }
 }
 
-Client.prototype.create = function () {
+Client.prototype.register = function () {
   return new Promise(async (resolve, reject) => {
     if (!this.errors.length) {
       await clientsCollection.insertOne(this.data)
@@ -40,14 +40,14 @@ Client.prototype.create = function () {
   })
 }
 
-Client.findByKey = function (clientKey) {
+Client.findByKey = function (key) {
   return new Promise(function (resolve, reject) {
-    if (typeof clientKey != "string") {
+    if (typeof key != "string") {
       reject()
       return
     }
     clientsCollection
-      .findOne({ clientKey: clientKey })
+      .findOne({ clientKey: key })
       .then(function (clientDoc) {
         if (clientDoc) {
           clientDoc = new Client(clientDoc, true)

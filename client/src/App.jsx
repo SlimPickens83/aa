@@ -19,6 +19,7 @@ import Contact from "./components/Contact.jsx"
 import Freq from "./components/Freq.jsx"
 import Login from "./components/Login.jsx"
 import Registration from "./components/Registration.jsx"
+import ClientRegistration from "./components/ClientRegistration.jsx"
 import Portal from "./components/Portal.jsx"
 import Commissions from "./components/Commissions.jsx"
 import Admin from "./components/Admin.jsx"
@@ -28,6 +29,7 @@ function App() {
   const initialState = {
     loggedIn: false,
     clientAuth: false,
+    accountAuth: false,
     admin: false,
     user: {
       username: localStorage.getItem("aaUsername")
@@ -53,6 +55,12 @@ function App() {
       case "clientAuth":
         draft.clientAuth = true
         draft.client = action.data
+        return
+      case "accountAuth":
+        draft.clientAuth = true
+        draft.accountAuth = true
+        draft.client = action.data
+        return
     }
   }
 
@@ -86,6 +94,7 @@ function App() {
             <Route path="/faq" element={<Freq />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/clientRegistration" element={<ClientRegistration />} />
             <Route path="/portal" element={<Portal />} />
             <Route path="/commissions" element={<Commissions />} />
             <Route path="/admin_login" element={<AdminLogin />} />

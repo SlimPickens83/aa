@@ -21,10 +21,10 @@ exports.clientData = function (req, res) {
   }
 }
 
-exports.create = function (req, res) {
+exports.register = function (req, res) {
   let client = new Client(req.body)
   client
-    .create()
+    .register()
     .then(() => {
       res.json({
         clientName: client.data.clientName
