@@ -39,8 +39,7 @@ h1 {
   align-self: center;
 }
 
-#headerGrandchild,
-#basic-nav-dropdown {
+#headerGrandchild {
   text-align: right;
 }
 
@@ -307,12 +306,22 @@ h1 {
   margin: 6px;
 }
 
+#navdropdownContainer {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+#basic-nav-dropdown {
+  text-align: right;
+}
+
 .dropdown-menu {
   background-color: #0d4296e5;
-  --bs-dropdown-link-hover-bg: #0d6efd;
-  --bs-dropdown-link-hover-color: #f8f9fa;
+  padding-left: 12px;
+  width: 20%;
 }
 
 .dropdown-item {
-  color: #ffffff;
+  color: white;
 }
