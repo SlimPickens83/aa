@@ -16,6 +16,7 @@ function Login(props) {
 
     try {
       const response = await Axios.post("/login", { username, password })
+      console.log(response)
       if (response.data) {
         appDispatch({ type: "login", data: response.data })
         navigate("/")
@@ -24,6 +25,7 @@ function Login(props) {
       }
     } catch (e) {
       console.log("Undetermined login error.")
+      console.log({ e })
     }
   }
 

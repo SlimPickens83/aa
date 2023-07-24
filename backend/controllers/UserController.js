@@ -1,7 +1,9 @@
 const User = require("../models/User")
 
 exports.login = function (req, res) {
+  console.log(req.body)
   let user = new User(req.body)
+  console.log(user)
   user
     .login()
     .then(function (result) {

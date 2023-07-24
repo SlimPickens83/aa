@@ -12,7 +12,7 @@ let User = function (data) {
 }
 
 User.prototype.cleanUp = function () {
-  const userInput = [username, email, password, firstName, lastName, adminKey, accountKey, clientKey]
+  const userInput = ["username", "email", "password", "firstName", "lastName", "adminKey", "accountKey", "clientKey"]
   userInput.forEach(input => {
     if (typeof this.data.input != "string") {
       this.data.input = ""
@@ -98,11 +98,13 @@ User.prototype.validate = function () {
 
 User.prototype.login = function () {
   return new Promise((resolve, reject) => {
-    this.cleanUp()
+    // this.cleanUp()
     usersCollection
       .findOne({ username: this.data.username })
-      .then(attemptedUser => {
-        if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
+      .then(async attemptedUser => {
+        const passwordValidation = await bcrypt.compare(this.data.password, attemptedUser.password)
+        console.log(passwordValidation)
+        if (attemptedUser && passwordValidation) {
           this.data = attemptedUser
           this.loggedIn = true
           resolve("User match successful.")
@@ -119,13 +121,12 @@ User.prototype.login = function () {
 User.prototype.register = function () {
   return new Promise(async (resolve, reject) => {
     // Validate user data.
-    this.cleanUp()
+    // this.cleanUp()
     await this.validate()
 
     // Hash user password and save user to database upon successful validation.
     if (!this.errors.length) {
-      let salt = bcrypt.genSaltSync(10)
-      this.data.password = bcrypt.hashSync(this.data.password, salt)
+      this.data.password = bcrypt.hashSync(this.data.password, 10)
       await usersCollection.insertOne(this.data)
       resolve(this.data)
     } else {
