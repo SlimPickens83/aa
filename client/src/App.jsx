@@ -3,6 +3,7 @@ import React, { useState, useReducer, useEffect } from "react"
 import ReactDOM from "react-dom/client"
 import { useImmerReducer } from "use-immer"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import "./admin.css"
 import Axios from "axios"
 Axios.defaults.baseURL = "http://localhost:3000" || "https://aapbackend.onrender.com/"
 
@@ -24,6 +25,7 @@ import Portal from "./components/Portal.jsx"
 import Commissions from "./components/Commissions.jsx"
 import Admin from "./components/Admin.jsx"
 import AdminLogin from "./components/AdminLogin.jsx"
+import AdminDashboard from "./components/AdminDashboard.jsx"
 
 function App() {
   const initialState = {
@@ -86,9 +88,9 @@ function App() {
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
         <BrowserRouter>
-          {state.loggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
+          {state.admin ? <></> : state.loggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
           <Routes>
-            <Route path="/" element={state.admin ? <Admin /> : state.loggedIn ? <Portal /> : <HomeGuest />} />
+            <Route path="/" element={state.admin ? <AdminDashboard /> : state.loggedIn ? <Portal /> : <HomeGuest />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<Freq />} />
@@ -99,7 +101,7 @@ function App() {
             <Route path="/commissions" element={<Commissions />} />
             <Route path="/admin_login" element={<AdminLogin />} />
           </Routes>
-          <Footer />
+          {state.admin ? <></> : <Footer />}
         </BrowserRouter>
       </DispatchContext.Provider>
     </StateContext.Provider>

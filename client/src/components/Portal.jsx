@@ -26,7 +26,7 @@ function Portal() {
   function viewJobs() {
     setState(draft => {
       draft.jobCounter++
-      draft.job = true
+      draft.jobs = true
     })
   }
 
@@ -111,9 +111,11 @@ function Portal() {
           <Button onClick={viewJobs} id="currentJobs">
             Current Jobs
           </Button>
-          <Button onClick={viewClients} id="activeClients">
-            Active Clients
-          </Button>
+          {appState.admin && (
+            <Button onClick={viewClients} id="activeClients">
+              Active Clients
+            </Button>
+          )}
           <Button onClick={viewFee} id="feeStructure">
             Fee Structure
           </Button>
