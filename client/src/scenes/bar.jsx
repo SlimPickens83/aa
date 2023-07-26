@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
 function Bar() {
-  return <></>
+  return <>Bar</>
 }
 
 export default Bar

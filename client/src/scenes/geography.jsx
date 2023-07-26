@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
 function Geography() {
-  return <></>
+  return <>Geography</>
 }
 
 export default Geography

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
 function Team() {
-  return <></>
+  return <>Team</>
 }
 
 export default Team

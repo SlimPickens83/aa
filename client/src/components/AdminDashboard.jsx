@@ -1,10 +1,12 @@
-import React, { useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import { useImmerReducer } from "use-immer"
 import { ColorModeContext, useMode } from "../theme"
 import { CssBaseline, ThemeProvider, dividerClasses } from "@mui/material"
-import { Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import StateContext from "../StateContext"
+import DispatchContext from "../DispatchContext"
 import Topbar from "../scenes/global/Topbar"
-import Dashboard from "../scenes/dashboard"
+import Dashboard from "../scenes/dashboard/index.jsx"
 import Sidebar from "../scenes/global/Sidebar"
 import Team from "../scenes/team"
 import Invoices from "../scenes/invoices"
@@ -16,11 +18,13 @@ import Pie from "../scenes/pie"
 import FAQ from "../scenes/faq"
 import Geography from "../scenes/geography"
 import Calendar from "../scenes/calendar"
-import DispatchContext from "../DispatchContext"
-import { FamilyRestroomRounded } from "@mui/icons-material"
+import { columnsStateInitializer } from "@mui/x-data-grid/internals"
+import { Satellite } from "@mui/icons-material"
 
-function AdminDashboard() {
+function AdminDashboard(props) {
   const [theme, colorMode] = useMode()
+  const appState = useContext(StateContext)
+
   // const initialState = {
   //   dashboard: true,
   //   team: false,
@@ -33,96 +37,86 @@ function AdminDashboard() {
   //   faq: false,
   //   geography: false,
   //   calendar: false,
-  //   stateCounter: 0
+  //   clearCounter: 0
   // }
 
-  // function dashboardReducer(draft, action) {
+  // function draftReducer(draft, action) {
   //   switch (action.type) {
   //     case "dashboard":
-  //       draft.stateCounter++
   //       draft.dashboard = true
   //       return
   //     case "team":
-  //       draft.stateCounter++
   //       draft.team = true
   //       return
   //     case "contacts":
-  //       draft.stateCounter++
   //       draft.contacts = true
   //       return
   //     case "invoices":
-  //       draft.stateCounter++
   //       draft.invoices = true
   //       return
   //     case "form":
-  //       draft.stateCounter++
   //       draft.form = true
   //       return
   //     case "bar":
-  //       draft.stateCounter++
   //       draft.bar = true
   //       return
   //     case "pie":
-  //       draft.stateCounter++
   //       draft.pie = true
   //       return
   //     case "line":
-  //       draft.stateCounter++
   //       draft.line = true
   //       return
   //     case "faq":
-  //       draft.stateCounter++
   //       draft.faq = true
   //       return
   //     case "geography":
-  //       draft.stateCounter++
   //       draft.geography = true
   //       return
   //     case "calendar":
-  //       draft.stateCounter++
   //       draft.calendar = true
   //       return
   //     case "clear":
-  //       draft.dashboard = false
-  //       draft.team = false
-  //       draft.contacts = false
-  //       draft.invoices = false
-  //       draft.form = false
-  //       draft.bar = false
-  //       draft.pie = false
-  //       draft.line = false
-  //       draft.faq = false
-  //       draft.geography = false
-  //       draft.calendar = false
+  //       draft.clearCounter++
   //       return
   //   }
   // }
 
-  // const [state, dashDispatch] = useImmerReducer(dashboardReducer, initialState)
+  // const [state, dashDispatch] = useImmerReducer(draftReducer, initialState)
+
+  // function clear() {
+  //   dispatch({ type: "dashboard", value: false })
+  //   dispatch({ type: "team", value: false })
+  //   dispatch({ type: "contacts", value: false })
+  //   dispatch({ type: "invoices", value: false })
+  //   dispatch({ type: "form", value: false })
+  //   dispatch({ type: "bar", value: false })
+  //   dispatch({ type: "pie", value: false })
+  //   dispatch({ type: "line", value: false })
+  //   dispatch({ type: "faq", value: false })
+  //   dispatch({ type: "geography", value: false })
+  //   dispatch({ type: "calendar", value: false })
+  // }
+
+  // useEffect(() => {
+  //   if (state.clearCounter) {
+  //     clear()
+  //   }
+  // }, [state.clearCounter])
 
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        {/* <DispatchContext.Provider value={dashDispatch}> */}
         <div className="adminDashboard">
           <Sidebar />
           <main className="content">
             <Topbar />
-            <Routes>
-              <Route path="/adminDashboard" element={<AdminDashboard />} />
-              <Route path="/adminDashboard/team" element={<Team />} />
-              <Route path="/adminDashboard/contacts" element={<Contacts />} />
-              <Route path="/adminDashboard/invoices" element={<Invoices />} />
-              <Route path="/adminDashboard/form" element={<Form />} />
-              <Route path="/adminDashboard/bar" element={<Bar />} />
-              <Route path="/adminDashboard/pie" element={<Pie />} />
-              <Route path="/adminDashboard/line" element={<Line />} />
-              <Route path="/adminDashboard/faq" element={<FAQ />} />
-              <Route path="/adminDashboard/geography" element={<Geography />} />
-              <Route path="/adminDashboard/calendar" element={<Calendar />} />
-            </Routes>
+            {props.dashComponent}
+            {/* {state.dashboard ? <Dashboard /> : state.team ? <Team /> : state.contacts ? <Contacts /> : state.invoices ? <Invoices /> : state.form ? <Form /> : state.bar ? <Bar /> : state.pie ? <Pie /> : state.line ? <Line /> : state.faq ? <FAQ /> : state.geography ? <Geography /> : state.calendar ? <Calendar /> : ""} */}
           </main>
         </div>
+        {/* </DispatchContext.Provider> */}
       </ThemeProvider>
     </ColorModeContext.Provider>
   )

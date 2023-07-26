@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
 function Pie() {
-  return <></>
+  return <>Pie</>
 }
 
 export default Pie

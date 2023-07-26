@@ -1,7 +1,13 @@
 import React, { useEffect } from "react"
+import AdminHeader from "../../components/AdminHeader"
+import { Box } from "@mui/material"
 
 function Dashboard() {
-  return <></>
+  return (
+    <Box m="20px" display="flex" justifyContent="spaceBetween">
+      <AdminHeader title="DASHBOARD" subtitle="Welcome to your dashboard" />
+    </Box>
+  )
 }
 
 export default Dashboard

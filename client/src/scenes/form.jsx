@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
 function Form() {
-  return <></>
+  return <>Form</>
 }
 
 export default Form

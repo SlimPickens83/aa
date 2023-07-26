@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
 function Contacts() {
-  return <></>
+  return <>Contacts</>
 }
 
 export default Contacts

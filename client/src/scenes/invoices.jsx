@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
 function Invoices() {
-  return <></>
+  return <>Invoices</>
 }
 
 export default Invoices

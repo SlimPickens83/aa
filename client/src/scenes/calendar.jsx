@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
 function Calendar() {
-  return <></>
+  return <>Calendar</>
 }
 
 export default Calendar

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
 function FAQ() {
-  return <></>
+  return <>FAQ</>
 }
 
 export default FAQ

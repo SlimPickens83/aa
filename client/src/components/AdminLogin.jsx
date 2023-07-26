@@ -23,7 +23,7 @@ function Login(props) {
           const loginResponse = await Axios.post("/login", { username, password })
           if (loginResponse.data) {
             appDispatch({ type: "login", data: loginResponse.data })
-            navigate("/")
+            navigate("/adminDashboard")
           } else {
             console.log(`Incorrect username (${username}) / password (${password})`)
           }
