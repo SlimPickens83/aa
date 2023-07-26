@@ -100,6 +100,7 @@ function App() {
             <Route path="/portal" element={<Portal />} />
             <Route path="/commissions" element={<Commissions />} />
             <Route path="/admin_login" element={<AdminLogin />} />
+            <Route path="/adminDashboard" element={<AdminDashboard />} />
           </Routes>
           {state.admin ? <></> : <Footer />}
         </BrowserRouter>
