@@ -58,7 +58,7 @@ function Login(props) {
         </Form.Group>
 
         <div className="alert alert-info" role="alert" style={{ width: 216 }}>
-          For preview purposes, visitors can use "guest" as the Admin Key.
+          For preview purposes, visitors can use "guest" as the Admin Key and "guest"/"guest123" for Username/Password.
         </div>
 
         <Button id="loginSubmit" variant="primary" type="submit">

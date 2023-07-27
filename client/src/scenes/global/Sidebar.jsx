@@ -18,7 +18,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined"
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined"
 import dashPic from "../../assets/user.png"
 
-const Item = ({ title, icon, to, selected, setSelected }) => {
+const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
 
@@ -117,7 +117,7 @@ function Sidebar() {
             <Typography variant="h6" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
               Data
             </Typography>
-            <Item title="Bar Chart" to="/adminDashboard/bar" icon={<BarChartOutlinedIcon />} elected={selected} setSelected={setSelected} />
+            <Item title="Bar Chart" to="/adminDashboard/bar" icon={<BarChartOutlinedIcon />} selected={selected} setSelected={setSelected} />
             <Item title="Pie Chart" to="/adminDashboard/pie" icon={<PieChartOutlinedIcon />} selected={selected} setSelected={setSelected} />
             <Item title="Line Chart" to="/adminDashboard/line" icon={<TimelineOutlinedIcon />} selected={selected} setSelected={setSelected} />
             <Item title="Geography Chart" to="/adminDashboard/geography" icon={<MapOutlinedIcon />} selected={selected} setSelected={setSelected} />
