@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react"
-import { ColorModeContext, useMode } from "../theme"
+import { ColorModeContext, useMode } from "../../theme"
 import { CssBaseline, ThemeProvider, dividerClasses } from "@mui/material"
-import StateContext from "../StateContext"
-import Topbar from "../scenes/global/Topbar"
-import Sidebar from "../scenes/global/Sidebar"
+import StateContext from "../../StateContext"
+import Topbar from "../../scenes/global/Topbar"
+import Sidebar from "../../scenes/global/Sidebar"
 import { columnsStateInitializer } from "@mui/x-data-grid/internals"
 import { Satellite } from "@mui/icons-material"
 

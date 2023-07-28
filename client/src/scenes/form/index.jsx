@@ -2,7 +2,7 @@ import { Box, Button, TextField } from "@mui/material"
 import { Formik } from "formik"
 import * as yup from "yup"
 import useMediaQuery from "@mui/material/useMediaQuery"
-import AdminHeader from "../../components/AdminHeader"
+import AdminHeader from "../../components/dashComponents/AdminHeader"
 import { ErrorSharp, TouchAppRounded } from "@mui/icons-material"
 
 const initialValues = {

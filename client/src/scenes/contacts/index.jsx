@@ -4,7 +4,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid"
 import { tokens } from "../../theme"
 import { mockDataContacts } from "../../data/mockData"
 import { useTheme } from "@mui/material"
-import AdminHeader from "../../components/AdminHeader"
+import AdminHeader from "../../components/dashComponents/AdminHeader"
 
 function Contacts() {
   const theme = useTheme()

@@ -3,7 +3,7 @@ import { Box, Typography, useTheme } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
 import { tokens } from "../../theme"
 import { mockDataInvoices } from "../../data/mockData"
-import AdminHeader from "../../components/AdminHeader"
+import AdminHeader from "../../components/dashComponents/AdminHeader"
 
 function Invoices() {
   const theme = useTheme()

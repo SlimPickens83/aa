@@ -23,7 +23,7 @@ import ClientRegistration from "./components/ClientRegistration.jsx"
 import Portal from "./components/Portal.jsx"
 import Commissions from "./components/Commissions.jsx"
 import AdminLogin from "./components/AdminLogin.jsx"
-import AdminDashboard from "./components/AdminDashboard.jsx"
+import AdminDashboard from "./components/dashComponents/AdminDashboard.jsx"
 
 // Dashboard Components
 import Dashboard from "./scenes/dashboard/index"

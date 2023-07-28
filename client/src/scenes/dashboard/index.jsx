@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import AdminHeader from "../../components/AdminHeader"
+import AdminHeader from "../../components/dashComponents/AdminHeader"
 import { Box } from "@mui/material"
 
 function Dashboard() {
